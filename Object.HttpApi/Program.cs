@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Object.HttpApi.Extensions;
 
 namespace Object.HttpApi
 {
@@ -13,6 +14,7 @@ namespace Object.HttpApi
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseAutofac()
+                .UseLog4Net()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Object.Application.Contracts.School;
-using Object.Domain.School;
+using Object.Application.Contracts.Default;
+using Object.Domain.Default;
 
 namespace Object.Application
 {
@@ -8,9 +8,9 @@ namespace Object.Application
     {
         public ObjectApplicationAutoMapperProfile()
         {
-            CreateMap<Student, StudentDto>();
-
-            CreateMap<StudentDto, Student>();
+            CreateMap<User, UserResponse>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Token, opt => opt.Ignore()); ;
         }
     }
 }

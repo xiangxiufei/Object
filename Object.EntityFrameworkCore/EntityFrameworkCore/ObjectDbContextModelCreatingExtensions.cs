@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Object.Domain.School;
+using Object.Domain.Default;
 using Object.Domain.Shared;
 using Volo.Abp;
 
@@ -11,14 +11,15 @@ namespace Object.EntityFrameworkCore
         {
             Check.NotNull(builder, nameof(builder));
 
-            builder.Entity<Student>(b =>
+            builder.Entity<User>(b =>
             {
-                b.ToTable(ObjectConsts.DbTablePrefix + "Student");
-                b.HasKey(e => e.Sid).HasName("PRIMARY");
-                b.Property(e => e.Sid).HasColumnName("Sid");
-                b.Property(e => e.Sage).HasColumnName("Sage");
-                b.Property(e => e.Sname).HasColumnName("Sname").HasMaxLength(32).IsUnicode(false);
-                b.Property(e => e.Ssex).HasColumnName("Ssex").HasMaxLength(8).IsUnicode(false);
+                b.ToTable(ObjectConsts.DbTablePrefix + "User");
+                b.HasKey(e => e.Id).HasName("PRIMARY");
+                b.Property(e => e.RoleId).HasColumnName("RoleId").IsRequired().HasDefaultValue(0);
+                b.Property(e => e.Name).HasColumnName("Name").HasMaxLength(32).IsRequired().HasDefaultValue("").IsUnicode(false);
+                b.Property(e => e.Password).HasColumnName("Password").HasMaxLength(64).IsRequired().HasDefaultValue("").IsUnicode(false);
+                b.Property(e => e.Age).HasColumnName("Age").IsRequired().HasDefaultValue(0);
+                b.Property(e => e.Sex).HasColumnName("Sex").HasMaxLength(8).IsRequired().HasDefaultValue("2").IsUnicode(false);
             });
         }
     }

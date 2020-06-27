@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Object.Application;
 using Object.EntityFrameworkCore;
-using Object.HttpApi.Filters;
+using Object.HttpApi.Extensions;
 using Object.HttpApi.Middleware;
 using System.Linq;
 using Volo.Abp;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.Autofac;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -27,23 +26,16 @@ namespace Object.HttpApi
         {
             Configure<MvcOptions>(options =>
             {
-                var filterMetadata = options.Filters.FirstOrDefault(x => x is ServiceFilterAttribute attribute && attribute.ServiceType.Equals(typeof(ObjectExceptionFilter)));
+                var index = options.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
+                if (index > -1)
+                    options.Filters.RemoveAt(index);
 
-                // 移除 AbpExceptionFilter
-                options.Filters.Remove(filterMetadata);
-
-                // 添加自己实现的 MeowvBlogExceptionFilter
-                options.Filters.Add(typeof(ObjectExceptionFilter));
+                //options.Filters.Add(typeof(ObjectExceptionFilter));
             });
 
-            context.Services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Object",
-                });
-            });
+            context.Services.AddCors();
+            context.Services.AddSwagger();
+            context.Services.AddAuthorization();
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -56,19 +48,27 @@ namespace Object.HttpApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHsts();
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Object API");
+                options.DefaultModelsExpandDepth(-1);
                 options.RoutePrefix = string.Empty;
             });
 
             app.UseRouting();
 
-            // 异常处理中间件
+            app.UseCors();
+
             app.UseMiddleware<ObjectExceptionHandlerMiddleware>();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {

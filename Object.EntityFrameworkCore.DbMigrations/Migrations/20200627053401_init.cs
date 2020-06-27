@@ -8,25 +8,26 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Student",
+                name: "User",
                 columns: table => new
                 {
-                    Sid = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Sname = table.Column<string>(unicode: false, maxLength: 32, nullable: true),
-                    Sage = table.Column<int>(nullable: false),
-                    Ssex = table.Column<string>(unicode: false, maxLength: 8, nullable: true)
+                    Name = table.Column<string>(unicode: false, maxLength: 32, nullable: false, defaultValue: ""),
+                    Password = table.Column<string>(unicode: false, maxLength: 64, nullable: false, defaultValue: ""),
+                    Age = table.Column<int>(nullable: false, defaultValue: 0),
+                    Sex = table.Column<string>(unicode: false, maxLength: 8, nullable: false, defaultValue: "2")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PRIMARY", x => x.Sid);
+                    table.PrimaryKey("PRIMARY", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "User");
         }
     }
 }

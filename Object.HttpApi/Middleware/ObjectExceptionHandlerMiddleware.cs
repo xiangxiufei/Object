@@ -1,62 +1,54 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using log4net;
+using Microsoft.AspNetCore.Http;
+using Object.Domain.Shared;
+using Object.Domain.Shared.Extensions;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace Object.HttpApi.Middleware
 {
-    /// <summary>
-    /// 异常处理中间件
-    /// </summary>
     public class ObjectExceptionHandlerMiddleware
     {
         private readonly RequestDelegate next;
+        private static readonly ILog log = LogManager.GetLogger(typeof(ObjectExceptionHandlerMiddleware));
 
         public ObjectExceptionHandlerMiddleware(RequestDelegate next)
         {
             this.next = next;
         }
 
-        /// <summary>
-        /// Invoke
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
         public async Task Invoke(HttpContext context)
         {
             try
             {
                 await next(context);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                await ExceptionHandlerAsync(context, ex.Message);
-            }
-            finally
-            {
-                var statusCode = context.Response.StatusCode;
-                if (statusCode != StatusCodes.Status200OK)
-                {
-                    Enum.TryParse(typeof(HttpStatusCode), statusCode.ToString(), out object message);
-                    await ExceptionHandlerAsync(context, message.ToString());
-                }
+                await ExceptionHandlerAsync(context, e);
             }
         }
 
-        /// <summary>
-        /// 异常处理，返回JSON
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        private async Task ExceptionHandlerAsync(HttpContext context, string message)
+        private async Task ExceptionHandlerAsync(HttpContext context, Exception e)
         {
-            context.Response.ContentType = "application/json;charset=utf-8";
+            if (e == null) return;
 
-            var result = new ServiceResult();
-            result.IsFailed(message);
+            log.Error($"{context.Request.Path}|{e.Message}", e);
 
-            await context.Response.WriteAsync(result.ToJson());
+            await WriteExceptionAsync(context, e);
+        }
+
+        private static async Task WriteExceptionAsync(HttpContext context, Exception e)
+        {
+            if (e is UnauthorizedAccessException)
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            else if (e is Exception)
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+            context.Response.ContentType = "application/json";
+
+            await context.Response.WriteAsync((new ApiResponse(StatusCode.CODE500, e.Message)).response.ToJson());
         }
     }
 }
