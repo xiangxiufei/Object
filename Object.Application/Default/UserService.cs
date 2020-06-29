@@ -6,7 +6,6 @@ using Object.Domain.Shared.Extensions;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Object.Application.Default
@@ -73,7 +72,7 @@ namespace Object.Application.Default
                     expires: DateTime.Now.AddSeconds(AppSettings.JWT.Expires),
                     signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(securityToken);
+            return "Bearer " + new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
     }
 }

@@ -3,21 +3,15 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Object.Domain.Default
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRoleRepository : IRepository<UserRole>
     {
     }
 
-    public class User : Entity
+    public class UserRole : Entity
     {
         public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Password { get; set; }
-
-        public int Age { get; set; }
-
-        public string Sex { get; set; }
+        public int UserId { get; set; }
+        public int RoleId { get; set; }
 
         public override object[] GetKeys()
         {
