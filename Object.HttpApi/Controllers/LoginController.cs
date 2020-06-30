@@ -4,6 +4,7 @@ using Object.Application.Contracts.Default;
 using Object.Domain.Shared;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
+using static Object.Domain.Shared.Jwt;
 
 namespace Object.HttpApi.Controllers
 {

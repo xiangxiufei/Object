@@ -1,12 +1,8 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Object.Application.Contracts.Default;
+﻿using Object.Application.Contracts.Default;
 using Object.Domain.Default;
 using Object.Domain.Shared;
-using Object.Domain.Shared.Extensions;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using static Object.Domain.Shared.Jwt;
 
 namespace Object.Application.Default
 {
@@ -50,29 +46,6 @@ namespace Object.Application.Default
             }
 
             return response;
-        }
-
-        private string GetToken(UserResponse user)
-        {
-            var claims = new[] {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Iss,AppSettings.JWT.Issuer),
-                    new Claim(JwtRegisteredClaimNames.Aud,AppSettings.JWT.Audience),
-                    new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
-                    new Claim(JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddSeconds(AppSettings.JWT.Expires)).ToUnixTimeSeconds()}")
-                };
-
-            var key = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.SerializeUtf8());
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var securityToken = new JwtSecurityToken(
-                    issuer: AppSettings.JWT.Issuer,
-                    audience: AppSettings.JWT.Audience,
-                    claims: claims,
-                    expires: DateTime.Now.AddSeconds(AppSettings.JWT.Expires),
-                    signingCredentials: creds);
-
-            return "Bearer " + new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
     }
 }
