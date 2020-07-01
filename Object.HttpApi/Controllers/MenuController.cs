@@ -28,7 +28,9 @@ namespace Object.HttpApi.Controllers
         [HttpPost]
         public async Task<Response<List<MenuTree>>> GetMenuTree()
         {
-            var token = http.HttpContext.Request.Headers["Authorization"].ToStringX().Replace("Bearer ", "");
+            var token = http.HttpContext.Request
+                            .Headers["Authorization"]
+                            .ToStringX().Replace("Bearer ", "");
 
             return await service.GetMenuTree(GetUserName(token));
         }
