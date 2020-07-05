@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
 using Object.Domain.Shared.Extensions;
 using static Object.Domain.Shared.Jwt;
-using Object.Application.Contracts.Default;
+using Object.Application.Contracts.Object;
 using Object.Domain.Shared;
 using System.Collections.Generic;
 
@@ -25,7 +25,7 @@ namespace Object.HttpApi.Controllers
             this.service = service;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<Response<List<MenuTree>>> GetMenuTree()
         {
             var token = http.HttpContext.Request

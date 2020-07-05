@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Object.Domain.Default;
+using Object.Domain.Object;
+using Object.Domain.Shared;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Object.EntityFrameworkCore
 {
-    [ConnectionStringName("Default")]
+    [ObjectConnectionString]
     public class ObjectDbContext : AbpDbContext<ObjectDbContext>
     {
         public ObjectDbContext(DbContextOptions<ObjectDbContext> options) : base(options)

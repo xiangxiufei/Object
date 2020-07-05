@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Object.Application.Contracts.Default;
+using Object.Application.Contracts.Object;
 using Object.Domain.Shared;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;

@@ -11,8 +11,20 @@ namespace Object.EntityFrameworkCore.DbMigrations
         {
             var configuration = BuildConfiguration();
 
-            var builder = new DbContextOptionsBuilder<ObjectMigrationsDbContext>()
-                .UseMySql(configuration.GetConnectionString("Default"));
+            var Enabled = configuration["ConnectionStrings:Enabled"];
+
+            var builder = new DbContextOptionsBuilder<ObjectMigrationsDbContext>();
+
+            switch (Enabled)
+            {
+                case "MySql":
+                    builder.UseMySql(configuration.GetConnectionString(Enabled));
+                    break;
+
+                case "SqlServer":
+                    builder.UseSqlServer(configuration.GetConnectionString(Enabled));
+                    break;
+            }
 
             return new ObjectMigrationsDbContext(builder.Options);
         }

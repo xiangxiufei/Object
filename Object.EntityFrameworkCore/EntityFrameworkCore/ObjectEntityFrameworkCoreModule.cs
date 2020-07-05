@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Object.Domain;
+using Object.Domain.Shared;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Modularity;
 
 namespace Object.EntityFrameworkCore
@@ -9,7 +11,8 @@ namespace Object.EntityFrameworkCore
     [DependsOn(
         typeof(ObjectDomainModule),
         typeof(AbpEntityFrameworkCoreModule),
-        typeof(AbpEntityFrameworkCoreMySQLModule)
+        typeof(AbpEntityFrameworkCoreMySQLModule),
+        typeof(AbpEntityFrameworkCoreSqlServerModule)
     )]
     public class ObjectEntityFrameworkCoreModule : AbpModule
     {
@@ -22,7 +25,16 @@ namespace Object.EntityFrameworkCore
 
             Configure<AbpDbContextOptions>(options =>
             {
-                options.UseMySQL();
+                switch (AppSettings.ConnectionStringName)
+                {
+                    case "MySql":
+                        options.UseMySQL();
+                        break;
+
+                    case "SqlServer":
+                        options.UseSqlServer();
+                        break;
+                }
             });
         }
     }

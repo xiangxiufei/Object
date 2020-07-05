@@ -16,6 +16,10 @@ namespace Object.Domain.Shared
                                .Build();
         }
 
+        public static string ConnectionStringName => configuration["ConnectionStrings:Enabled"];
+
+        public static string ConnectionString => configuration.GetConnectionString(ConnectionStringName);
+
         public static class JWT
         {
             public static string SecurityKey => configuration["JWT:SecurityKey"];
