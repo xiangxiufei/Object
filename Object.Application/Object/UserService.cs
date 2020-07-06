@@ -87,5 +87,16 @@ namespace Object.Application.Object
 
             return result;
         }
+
+        public async Task<Response<UserDto>> CreateUser(CreateUserDto dto)
+        {
+            var result = new Response<UserDto>();
+
+            var user = await users.InsertAsync(ObjectMapper.Map<CreateUserDto, User>(dto));
+
+            result.Success(ObjectMapper.Map<User, UserDto>(user), "创建用户成功！");
+
+            return result;
+        }
     }
 }

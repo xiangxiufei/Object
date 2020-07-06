@@ -15,7 +15,7 @@ namespace Object.EntityFrameworkCore
             {
                 b.ToTable(ObjectConsts.DbTablePrefix + "User");
                 b.HasKey(e => e.Id);
-                b.Property(e => e.Id).ValueGeneratedNever();
+                //b.Property(e => e.Id).ValueGeneratedNever();
                 b.Property(e => e.Name).HasColumnName("Name").HasMaxLength(32).IsRequired().HasDefaultValue("").IsUnicode(false);
                 b.Property(e => e.Password).HasColumnName("Password").HasMaxLength(64).IsRequired().HasDefaultValue("").IsUnicode(false);
                 b.Property(e => e.Age).HasColumnName("Age").IsRequired().HasDefaultValue(0);

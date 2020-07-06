@@ -21,9 +21,10 @@ namespace Object.Application
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(s => s.Status == "0" ? false : true));
 
-            //CreateMap<UserDto, User>()
-            // .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.UserName))
-            // .ForMember(dest => dest.Password, opt => opt.Ignore());
+            CreateMap<CreateUserDto, User>()
+                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.UserName))
+                 .ForMember(dest => dest.Id, opt => opt.Ignore())
+                 .ForMember(dest => dest.Status, opt => opt.Ignore());
         }
     }
 }

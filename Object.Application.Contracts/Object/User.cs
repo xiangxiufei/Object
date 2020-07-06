@@ -11,6 +11,8 @@ namespace Object.Application.Contracts.Object
         Task<Response<PagedList<UserDto>>> GetUserList(PagingInput input);
 
         Task<Response<UserDto>> UpdateUserStatus(int id, bool status);
+
+        Task<Response<UserDto>> CreateUser(CreateUserDto dto);
     }
 
     public class UserRequest
@@ -35,5 +37,20 @@ namespace Object.Application.Contracts.Object
         public string Email { get; set; }
 
         public bool Status { get; set; }
+    }
+
+    public class CreateUserDto
+    {
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
+
+        public int Age { get; set; }
+
+        public string Sex { get; set; }
+
+        public string Mobile { get; set; }
+
+        public string Email { get; set; }
     }
 }

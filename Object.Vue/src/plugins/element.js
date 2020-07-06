@@ -24,6 +24,7 @@ import {
     Tooltip,
     Pagination,
     Dialog,
+    Radio,
 } from "element-ui";
 
 Vue.use(Button);
@@ -49,4 +50,5 @@ Vue.use(Switch);
 Vue.use(Tooltip);
 Vue.use(Pagination);
 Vue.use(Dialog);
+Vue.use(Radio);
 Vue.prototype.$message = Message;

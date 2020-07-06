@@ -53,7 +53,8 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(unicode: false, maxLength: 32, nullable: false, defaultValue: ""),
                     Password = table.Column<string>(unicode: false, maxLength: 64, nullable: false, defaultValue: ""),
                     Age = table.Column<int>(nullable: false, defaultValue: 0),

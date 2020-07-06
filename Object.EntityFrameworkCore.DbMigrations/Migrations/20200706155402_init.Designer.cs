@@ -10,7 +10,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Object.EntityFrameworkCore.DbMigrations.Migrations
 {
     [DbContext(typeof(ObjectMigrationsDbContext))]
-    [Migration("20200705053558_init")]
+    [Migration("20200706155402_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,7 +127,9 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.User", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Age")
                         .ValueGeneratedOnAdd()

@@ -25,6 +25,12 @@ namespace Object.HttpApi.Controllers
             return await service.GetUserList(input);
         }
 
+        [HttpPost]
+        public async Task<Response<UserDto>> CreateUser([FromBody]CreateUserDto dto)
+        {
+            return await service.CreateUser(dto);
+        }
+
         [HttpPut("{id}/status/{status}")]
         public async Task<Response<UserDto>> UpdateUserStatus([FromRoute]int id, [FromRoute] bool status)
         {

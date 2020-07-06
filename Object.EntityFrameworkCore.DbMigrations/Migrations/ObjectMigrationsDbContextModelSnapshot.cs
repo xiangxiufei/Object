@@ -125,7 +125,9 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.User", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Age")
                         .ValueGeneratedOnAdd()
