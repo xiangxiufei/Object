@@ -1,1 +1,1 @@
-# Abp vNext Demo
+# Abp vNext Vue Demo
