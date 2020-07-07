@@ -36,8 +36,8 @@
                             @click="saveNavState('/' + subItem.path)"
                         >
                             <i class="el-icon-menu"></i>
-                            <span>{{ subItem.name }}</span></el-menu-item
-                        >
+                            <span>{{ subItem.name }}</span>
+                        </el-menu-item>
                     </el-submenu>
                 </el-menu>
             </el-aside>

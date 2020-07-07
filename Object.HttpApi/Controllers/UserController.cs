@@ -19,6 +19,12 @@ namespace Object.HttpApi.Controllers
             this.service = service;
         }
 
+        [HttpGet("{id}")]
+        public async Task<Response<UserDto>> GetUser([FromRoute] int id)
+        {
+            return await service.GetUser(id);
+        }
+
         [HttpGet]
         public async Task<Response<PagedList<UserDto>>> GetUserList([FromQuery] PagingInput input)
         {
@@ -35,6 +41,18 @@ namespace Object.HttpApi.Controllers
         public async Task<Response<UserDto>> UpdateUserStatus([FromRoute]int id, [FromRoute] bool status)
         {
             return await service.UpdateUserStatus(id, status);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<Response<UserDto>> UpdateUser([FromRoute]int id, [FromBody] UpdateUserDto dto)
+        {
+            return await service.UpdateUser(id, dto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<Response<string>> DeleteUser([FromRoute]int id)
+        {
+            return await service.DeleteUser(id);
         }
     }
 }

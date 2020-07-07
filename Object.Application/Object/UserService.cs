@@ -94,7 +94,44 @@ namespace Object.Application.Object
 
             var user = await users.InsertAsync(ObjectMapper.Map<CreateUserDto, User>(dto));
 
-            result.Success(ObjectMapper.Map<User, UserDto>(user), "创建用户成功！");
+            result.Success(ObjectMapper.Map<User, UserDto>(user), "创建成功！");
+
+            return result;
+        }
+
+        public async Task<Response<UserDto>> GetUser(int id)
+        {
+            var result = new Response<UserDto>();
+
+            var user = await users.GetAsync(t => t.Id == id);
+
+            result.Success(ObjectMapper.Map<User, UserDto>(user));
+
+            return result;
+        }
+
+        public async Task<Response<UserDto>> UpdateUser(int id, UpdateUserDto dto)
+        {
+            var result = new Response<UserDto>();
+
+            var user = await users.GetAsync(t => t.Id == id);
+            user.Age = dto.Age;
+            user.Sex = dto.Sex;
+            user.Mobile = dto.Mobile;
+            user.Email = dto.Email;
+
+            result.Success(ObjectMapper.Map<User, UserDto>(await users.UpdateAsync(user)), "更新用户信息成功！");
+
+            return result;
+        }
+
+        public async Task<Response<string>> DeleteUser(int id)
+        {
+            var result = new Response<string>();
+
+            await users.DeleteAsync(t => t.Id == id);
+
+            result.msg = "删除成功！";
 
             return result;
         }

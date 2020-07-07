@@ -13,6 +13,12 @@ namespace Object.Application.Contracts.Object
         Task<Response<UserDto>> UpdateUserStatus(int id, bool status);
 
         Task<Response<UserDto>> CreateUser(CreateUserDto dto);
+
+        Task<Response<UserDto>> GetUser(int id);
+
+        Task<Response<UserDto>> UpdateUser(int id, UpdateUserDto dto);
+
+        Task<Response<string>> DeleteUser(int id);
     }
 
     public class UserRequest
@@ -45,6 +51,17 @@ namespace Object.Application.Contracts.Object
 
         public string Password { get; set; }
 
+        public int Age { get; set; }
+
+        public string Sex { get; set; }
+
+        public string Mobile { get; set; }
+
+        public string Email { get; set; }
+    }
+
+    public class UpdateUserDto
+    {
         public int Age { get; set; }
 
         public string Sex { get; set; }
