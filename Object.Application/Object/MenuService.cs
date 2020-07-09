@@ -1,6 +1,7 @@
 ﻿using Object.Application.Contracts.Object;
 using Object.Domain.Object;
 using Object.Domain.Shared;
+using Object.Domain.Shared.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +23,28 @@ namespace Object.Application.Object
             this.roleMenus = roleMenus;
         }
 
+        public async Task<string> GetMenu(string type)
+        {
+            string result = string.Empty;
+
+            if (type.Equals("list"))
+            {
+                var list = new Response<List<MenuList>>();
+
+                var menuList = (from a in await menus.GetListAsync()
+                                orderby a.Sort
+                                select a).ToList();
+
+                var dto = ObjectMapper.Map<List<Menu>, List<MenuList>>(menuList);
+
+                list.Success(dto);
+
+                result = list.ToJson();
+            }
+
+            return result;
+        }
+
         public async Task<Response<List<MenuTree>>> GetMenuTree(string userName)
         {
             return new Response<List<MenuTree>>()
@@ -32,7 +55,7 @@ namespace Object.Application.Object
             };
         }
 
-        private async Task<List<MenuTree>> GetMenuTree(string userName, int parentID)
+        public async Task<List<MenuTree>> GetMenuTree(string userName, int parentID)
         {
             List<MenuTree> result = new List<MenuTree>();
             List<Menu> list = (from a in await menus.GetListAsync()

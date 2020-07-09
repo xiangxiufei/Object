@@ -27,8 +27,10 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                 name: "Role",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(unicode: false, maxLength: 32, nullable: false, defaultValue: ""),
+                    Description = table.Column<string>(unicode: false, maxLength: 128, nullable: false, defaultValue: ""),
                     Sort = table.Column<int>(nullable: false, defaultValue: 0)
                 },
                 constraints: table =>
@@ -40,7 +42,8 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                 name: "RoleMenu",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(nullable: false, defaultValue: 0),
                     MenuId = table.Column<int>(nullable: false, defaultValue: 0)
                 },
@@ -72,7 +75,8 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                 name: "UserRole",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(nullable: false, defaultValue: 0),
                     RoleId = table.Column<int>(nullable: false, defaultValue: 0)
                 },

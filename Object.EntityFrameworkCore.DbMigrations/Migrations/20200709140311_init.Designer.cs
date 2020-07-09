@@ -10,7 +10,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Object.EntityFrameworkCore.DbMigrations.Migrations
 {
     [DbContext(typeof(ObjectMigrationsDbContext))]
-    [Migration("20200706155402_init")]
+    [Migration("20200709140311_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,7 +80,18 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.Role", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Description")
+                        .HasColumnType("varchar(128)")
+                        .HasMaxLength(128)
+                        .IsUnicode(false)
+                        .HasDefaultValue("");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -105,7 +116,9 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.RoleMenu", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("MenuId")
                         .ValueGeneratedOnAdd()
@@ -198,7 +211,9 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.UserRole", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()

@@ -29,8 +29,9 @@ namespace Object.EntityFrameworkCore
             {
                 b.ToTable(ObjectConsts.DbTablePrefix + "Role");
                 b.HasKey(e => e.Id);
-                b.Property(e => e.Id).ValueGeneratedNever();
+                //b.Property(e => e.Id).ValueGeneratedNever();
                 b.Property(e => e.Name).HasColumnName("Name").HasMaxLength(32).IsRequired().HasDefaultValue("").IsUnicode(false);
+                b.Property(e => e.Description).HasColumnName("Description").HasMaxLength(128).IsRequired().HasDefaultValue("").IsUnicode(false);
                 b.Property(e => e.Sort).HasColumnName("Sort").IsRequired().HasDefaultValue(0);
             });
 
@@ -38,7 +39,7 @@ namespace Object.EntityFrameworkCore
             {
                 b.ToTable(ObjectConsts.DbTablePrefix + "UserRole");
                 b.HasKey(e => e.Id);
-                b.Property(e => e.Id).ValueGeneratedNever();
+                //b.Property(e => e.Id).ValueGeneratedNever();
                 b.Property(e => e.UserId).HasColumnName("UserId").IsRequired().HasDefaultValue(0);
                 b.Property(e => e.RoleId).HasColumnName("RoleId").IsRequired().HasDefaultValue(0);
             });
@@ -60,7 +61,7 @@ namespace Object.EntityFrameworkCore
             {
                 b.ToTable(ObjectConsts.DbTablePrefix + "RoleMenu");
                 b.HasKey(e => e.Id);
-                b.Property(e => e.Id).ValueGeneratedNever();
+                //b.Property(e => e.Id).ValueGeneratedNever();
                 b.Property(e => e.RoleId).HasColumnName("RoleId").IsRequired().HasDefaultValue(0);
                 b.Property(e => e.MenuId).HasColumnName("MenuId").IsRequired().HasDefaultValue(0);
             });

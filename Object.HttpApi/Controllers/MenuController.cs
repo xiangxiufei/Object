@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Volo.Abp.AspNetCore.Mvc;
-using Object.Domain.Shared.Extensions;
-using static Object.Domain.Shared.Jwt;
 using Object.Application.Contracts.Object;
 using Object.Domain.Shared;
+using Object.Domain.Shared.Extensions;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Volo.Abp.AspNetCore.Mvc;
+using static Object.Domain.Shared.Jwt;
 
 namespace Object.HttpApi.Controllers
 {
@@ -33,6 +33,12 @@ namespace Object.HttpApi.Controllers
                             .ToStringX().Replace("Bearer ", "");
 
             return await service.GetMenuTree(GetUserName(token));
+        }
+
+        [HttpGet("{type}")]
+        public async Task<string> GetMenu([FromRoute]string type)
+        {
+            return await service.GetMenu(type);
         }
     }
 }

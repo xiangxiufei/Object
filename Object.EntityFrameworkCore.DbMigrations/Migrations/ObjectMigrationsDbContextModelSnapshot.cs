@@ -78,7 +78,18 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.Role", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Description")
+                        .HasColumnType("varchar(128)")
+                        .HasMaxLength(128)
+                        .IsUnicode(false)
+                        .HasDefaultValue("");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -103,7 +114,9 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.RoleMenu", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("MenuId")
                         .ValueGeneratedOnAdd()
@@ -196,7 +209,9 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
             modelBuilder.Entity("Object.Domain.Object.UserRole", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()

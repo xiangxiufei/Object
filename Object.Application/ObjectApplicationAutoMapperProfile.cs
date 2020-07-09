@@ -13,10 +13,6 @@ namespace Object.Application
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Token, opt => opt.Ignore());
 
-            CreateMap<Menu, MenuTree>()
-                .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.Url))
-                .ForMember(dest => dest.Children, opt => opt.Ignore());
-
             CreateMap<User, UserDto>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(s => s.Status == "0" ? false : true));
@@ -25,6 +21,20 @@ namespace Object.Application
                  .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.UserName))
                  .ForMember(dest => dest.Id, opt => opt.Ignore())
                  .ForMember(dest => dest.Status, opt => opt.Ignore());
+
+            CreateMap<Menu, MenuTree>()
+                .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.Url))
+                .ForMember(dest => dest.Children, opt => opt.Ignore());
+
+            CreateMap<Menu, MenuList>()
+                .ForMember(dest => dest.AuthName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Pid, opt => opt.MapFrom(src => src.ParentId))
+                .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.Url));
+
+            CreateMap<Role, RoleTree>()
+                .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.RoleDesc, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Children, opt => opt.Ignore());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Object.Domain.Shared.Extensions
@@ -14,14 +15,24 @@ namespace Object.Domain.Shared.Extensions
 
         public static string ToJson(this object obj)
         {
-            var timeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
-            return JsonConvert.SerializeObject(obj, timeConverter);
+            var serializerSettings = new JsonSerializerSettings
+            {
+                DateFormatString = "yyyy-MM-dd HH:mm:ss",
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings);
         }
 
         public static string ToJson(this object obj, string datetimeformats)
         {
-            var timeConverter = new IsoDateTimeConverter { DateTimeFormat = datetimeformats };
-            return JsonConvert.SerializeObject(obj, timeConverter);
+            var serializerSettings = new JsonSerializerSettings
+            {
+                DateFormatString = datetimeformats,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings);
         }
 
         public static T ToObject<T>(this string Json)
