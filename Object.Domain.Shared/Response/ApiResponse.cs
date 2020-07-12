@@ -6,7 +6,7 @@
         public string Value { get; set; } = "No Found";
         public Response<string> response = new Response<string>() { };
 
-        public ApiResponse(StatusCode apiCode, string msg = null)
+        public ApiResponse(StatusCode apiCode, string msg = "系统繁忙，请稍后再试！")
         {
             switch (apiCode)
             {

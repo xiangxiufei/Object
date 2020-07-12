@@ -28,10 +28,7 @@ namespace Object.Application.Object
         {
             var result = new Response<List<RoleTree>>();
 
-            var role = (from a in await roles.GetListAsync()
-                        join b in await userRoles.GetListAsync() on a.Id equals b.RoleId
-                        join c in await users.GetListAsync() on b.UserId equals c.Id
-                        select a).ToList();
+            var role = await roles.GetListAsync();
 
             var list = ObjectMapper.Map<List<Role>, List<RoleTree>>(role);
 
@@ -62,6 +59,72 @@ namespace Object.Application.Object
 
                 result.Add(dto);
             }
+
+            return result;
+        }
+
+        public async Task<Response<string>> CreateRole(RoleDto dto)
+        {
+            var result = new Response<string>();
+
+            var role = await roles.InsertAsync(ObjectMapper.Map<RoleDto, Role>(dto));
+
+            result.msg = "角色创建成功！";
+
+            return result;
+        }
+
+        public async Task<Response<RoleIdDto>> GetRole(int id)
+        {
+            var result = new Response<RoleIdDto>();
+
+            var role = await roles.GetAsync(t => t.Id == id);
+
+            result.Success(ObjectMapper.Map<Role, RoleIdDto>(role));
+
+            return result;
+        }
+
+        public async Task<Response<string>> UpdateRole(int id, RoleDto dto)
+        {
+            var result = new Response<string>();
+
+            var role = await roles.GetAsync(t => t.Id == id);
+            role.Name = dto.RoleName;
+            role.Description = dto.RoleDesc;
+
+            await roles.UpdateAsync(role);
+
+            result.msg = "更新角色信息成功！";
+
+            return result;
+        }
+
+        public async Task<Response<string>> DeleteRole(int id)
+        {
+            var result = new Response<string>();
+
+            var userRole = await userRoles.FindAsync(t => t.RoleId == id);
+
+            if (userRole != null)
+            {
+                result.status = 500;
+                result.msg = "该角色已绑定用户，无法删除！";
+                return result;
+            }
+
+            var roleMenu = await roleMenus.FindAsync(t => t.RoleId == id);
+
+            if (roleMenu != null)
+            {
+                result.status = 500;
+                result.msg = "该角色已分配权限，无法删除！";
+                return result;
+            }
+
+            await roles.DeleteAsync(t => t.Id == id);
+
+            result.msg = "角色删除成功！";
 
             return result;
         }

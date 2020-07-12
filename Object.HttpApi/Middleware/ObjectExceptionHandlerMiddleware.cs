@@ -41,14 +41,13 @@ namespace Object.HttpApi.Middleware
 
         private static async Task WriteExceptionAsync(HttpContext context, Exception e)
         {
-            if (e is UnauthorizedAccessException)
-                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            else if (e is Exception)
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-
             context.Response.ContentType = "application/json";
 
-            await context.Response.WriteAsync((new ApiResponse(StatusCode.CODE500, e.Message)).response.ToJson());
+            //var result = (new ApiResponse(StatusCode.CODE500, e.Message)).response.ToJson();
+
+            var result = (new ApiResponse(StatusCode.CODE500)).response.ToJson();
+
+            await context.Response.WriteAsync(result);
         }
     }
 }

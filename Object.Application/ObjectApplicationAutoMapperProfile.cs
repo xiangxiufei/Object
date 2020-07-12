@@ -35,6 +35,20 @@ namespace Object.Application
                 .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.RoleDesc, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Children, opt => opt.Ignore());
+
+            CreateMap<RoleDto, Role>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.RoleName))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.RoleDesc))
+                .ForMember(dest => dest.Sort, opt => opt.Ignore());
+
+            CreateMap<Role, RoleDto>()
+              .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Name))
+              .ForMember(dest => dest.RoleDesc, opt => opt.MapFrom(src => src.Description));
+
+            CreateMap<Role, RoleIdDto>()
+             .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Name))
+             .ForMember(dest => dest.RoleDesc, opt => opt.MapFrom(src => src.Description));
         }
     }
 }

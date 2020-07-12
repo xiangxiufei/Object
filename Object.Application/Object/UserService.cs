@@ -11,6 +11,7 @@ namespace Object.Application.Object
     public class UserService : ObjectAppService, IUserService
     {
         private readonly IUserRepository users;
+        private readonly IUserRoleRepository userRoles;
 
         public UserService(IUserRepository users)
         {
@@ -94,7 +95,7 @@ namespace Object.Application.Object
 
             var user = await users.InsertAsync(ObjectMapper.Map<CreateUserDto, User>(dto));
 
-            result.Success(ObjectMapper.Map<User, UserDto>(user), "创建成功！");
+            result.Success(ObjectMapper.Map<User, UserDto>(user), "用户创建成功！");
 
             return result;
         }
@@ -130,8 +131,9 @@ namespace Object.Application.Object
             var result = new Response<string>();
 
             await users.DeleteAsync(t => t.Id == id);
+            await userRoles.DeleteAsync(t => t.UserId == id);
 
-            result.msg = "删除成功！";
+            result.msg = "用户删除成功！";
 
             return result;
         }

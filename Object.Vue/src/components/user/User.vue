@@ -408,7 +408,7 @@ export default {
                     this.$message.error(res.msg);
                 }
             } else {
-                this.$message.info("已取消删除");
+                this.$message.info("已取消删除！");
             }
         },
     },
