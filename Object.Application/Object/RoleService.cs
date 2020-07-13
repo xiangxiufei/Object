@@ -67,7 +67,7 @@ namespace Object.Application.Object
         {
             var result = new Response<string>();
 
-            var role = await roles.InsertAsync(ObjectMapper.Map<RoleDto, Role>(dto));
+            await roles.InsertAsync(ObjectMapper.Map<RoleDto, Role>(dto));
 
             result.msg = "角色创建成功！";
 
@@ -127,6 +127,37 @@ namespace Object.Application.Object
             result.msg = "角色删除成功！";
 
             return result;
+        }
+
+        public async Task<Response<RoleTree>> DeleteRoleMenus(int roleId, int menuId)
+        {
+            var result = new Response<RoleTree>();
+
+            await DeleteRoleMenu(roleId, menuId);
+
+            var role = await roles.FindAsync(t => t.Id == roleId);
+
+            result.data = ObjectMapper.Map<Role, RoleTree>(role);
+
+            result.data.Children = await GetMenuTree(roleId, 0);
+
+            result.msg = "角色权限删除成功！";
+
+            return result;
+        }
+
+        public async Task DeleteRoleMenu(int roleId, int menuId)
+        {
+            await roleMenus.DeleteAsync(t => t.RoleId == roleId && t.MenuId == menuId, true);
+
+            var list = from t in await menus.GetListAsync()
+                       where t.ParentId == menuId
+                       select t;
+
+            foreach (var item in list)
+            {
+                await DeleteRoleMenu(roleId, item.Id);
+            }
         }
     }
 }

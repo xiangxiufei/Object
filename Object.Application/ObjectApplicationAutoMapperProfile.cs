@@ -23,6 +23,7 @@ namespace Object.Application
                  .ForMember(dest => dest.Status, opt => opt.Ignore());
 
             CreateMap<Menu, MenuTree>()
+                .ForMember(dest => dest.AuthName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.Url))
                 .ForMember(dest => dest.Children, opt => opt.Ignore());
 

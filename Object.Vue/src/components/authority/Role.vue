@@ -18,7 +18,72 @@
             </el-row>
 
             <el-table :data="roleList" border stripe>
-                <el-table-column type="expand"></el-table-column>
+                <el-table-column type="expand">
+                    <template slot-scope="scope">
+                        <el-row
+                            :class="[
+                                'bdbottom',
+                                i1 === 0 ? 'bdtop' : '',
+                                'vcenter',
+                            ]"
+                            v-for="(item1, i1) in scope.row.children"
+                            :key="item1.id"
+                        >
+                            <el-col :span="5">
+                                <el-tag
+                                    closable
+                                    @close="deleteRoleMenu(scope.row, item1.id)"
+                                >
+                                    {{ item1.authName }}
+                                </el-tag>
+                                <i class="el-icon-caret-right"></i>
+                            </el-col>
+                            <el-col :span="19">
+                                <el-row
+                                    :class="[
+                                        i2 === 0 ? '' : 'bdtop',
+                                        'vcenter',
+                                    ]"
+                                    v-for="(item2, i2) in item1.children"
+                                    :key="item2.id"
+                                >
+                                    <el-col :span="6">
+                                        <el-tag
+                                            type="success"
+                                            closable
+                                            @close="
+                                                deleteRoleMenu(
+                                                    scope.row,
+                                                    item2.id
+                                                )
+                                            "
+                                        >
+                                            {{ item2.authName }}
+                                        </el-tag>
+                                        <i class="el-icon-caret-right"></i>
+                                    </el-col>
+                                    <el-col :span="18">
+                                        <el-tag
+                                            type="warning"
+                                            v-for="item3 in item2.children"
+                                            :key="item3.id"
+                                            closable
+                                            @close="
+                                                deleteRoleMenu(
+                                                    scope.row,
+                                                    item3.id
+                                                )
+                                            "
+                                        >
+                                            {{ item3.authName }}
+                                        </el-tag>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                        </el-row>
+                        <!-- <pre>{{ scope.row }}</pre> -->
+                    </template>
+                </el-table-column>
                 <el-table-column type="index" label="#"></el-table-column>
                 <el-table-column
                     label="角色名称"
@@ -258,8 +323,51 @@ export default {
                 this.$message.info("已取消删除！");
             }
         },
+        async deleteRoleMenu(role, menuId) {
+            const confirmResult = await this.$confirm(
+                "此操作将永久删除该角色权限, 是否继续?",
+                "提示",
+                {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning",
+                }
+            ).catch((error) => error);
+
+            if (confirmResult == "confirm") {
+                const { data: res } = await this.$http.delete(
+                    `role/${role.id} /menu/${menuId}`
+                );
+
+                if (res.status === 200) {
+                    this.$message.success(res.msg);
+                    role.children = res.data.children;
+                } else {
+                    this.$message.error(res.msg);
+                }
+            } else {
+                this.$message.info("已取消删除！");
+            }
+        },
     },
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-tag {
+    margin: 7px;
+}
+
+.bdtop {
+    border-top: 1px solid #eee;
+}
+
+.bdbottom {
+    border-bottom: 1px solid #eee;
+}
+
+.vcenter {
+    display: flex;
+    align-items: center;
+}
+</style>

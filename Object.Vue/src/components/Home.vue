@@ -27,7 +27,7 @@
                     >
                         <template slot="title">
                             <i :class="icons[item.id]"></i>
-                            <span>{{ item.name }}</span>
+                            <span>{{ item.authName }}</span>
                         </template>
                         <el-menu-item
                             :index="'/' + subItem.path"
@@ -36,7 +36,7 @@
                             @click="saveNavState('/' + subItem.path)"
                         >
                             <i class="el-icon-menu"></i>
-                            <span>{{ subItem.name }}</span>
+                            <span>{{ subItem.authName }}</span>
                         </el-menu-item>
                     </el-submenu>
                 </el-menu>

@@ -13,9 +13,10 @@ namespace Object.Application.Object
         private readonly IUserRepository users;
         private readonly IUserRoleRepository userRoles;
 
-        public UserService(IUserRepository users)
+        public UserService(IUserRepository users, IUserRoleRepository userRoles)
         {
             this.users = users;
+            this.userRoles = userRoles;
         }
 
         public async Task<Response<UserResponse>> Login(UserRequest request)

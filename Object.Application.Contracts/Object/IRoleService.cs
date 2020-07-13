@@ -15,6 +15,8 @@ namespace Object.Application.Contracts.Object
         Task<Response<string>> UpdateRole(int id, RoleDto dto);
 
         Task<Response<string>> DeleteRole(int id);
+
+        Task<Response<RoleTree>> DeleteRoleMenus(int roleId, int menuId);
     }
 
     public class RoleIdDto

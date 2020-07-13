@@ -50,5 +50,11 @@ namespace Object.HttpApi.Controllers
         {
             return await service.DeleteRole(id);
         }
+
+        [HttpDelete("{roleId}/menu/{menuId}")]
+        public async Task<Response<RoleTree>> DeleteRoleMenu([FromRoute]int roleId, [FromRoute]int menuId)
+        {
+            return await service.DeleteRoleMenus(roleId, menuId);
+        }
     }
 }
