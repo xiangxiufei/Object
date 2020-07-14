@@ -17,6 +17,8 @@ namespace Object.Application.Contracts.Object
         Task<Response<string>> DeleteRole(int id);
 
         Task<Response<RoleTree>> DeleteRoleMenus(int roleId, int menuId);
+
+        Task<Response<string>> CreateRoleMenu(int roleId, string menuIds);
     }
 
     public class RoleIdDto

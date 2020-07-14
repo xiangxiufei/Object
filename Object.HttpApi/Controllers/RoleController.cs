@@ -56,5 +56,11 @@ namespace Object.HttpApi.Controllers
         {
             return await service.DeleteRoleMenus(roleId, menuId);
         }
+
+        [HttpPost("{roleId}/menu/{menuIds}")]
+        public async Task<Response<string>> CreateRoleMenu(int roleId, string menuIds)
+        {
+            return await service.CreateRoleMenu(roleId, menuIds);
+        }
     }
 }

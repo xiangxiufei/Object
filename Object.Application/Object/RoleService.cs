@@ -1,6 +1,7 @@
 ﻿using Object.Application.Contracts.Object;
 using Object.Domain.Object;
 using Object.Domain.Shared;
+using Object.Domain.Shared.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,15 +10,13 @@ namespace Object.Application.Object
 {
     public class RoleService : ObjectAppService, IRoleService
     {
-        private readonly IUserRepository users;
         private readonly IRoleRepository roles;
         private readonly IUserRoleRepository userRoles;
         private readonly IMenuRepository menus;
         private readonly IRoleMenuRepository roleMenus;
 
-        public RoleService(IUserRepository users, IRoleRepository roles, IUserRoleRepository userRoles, IMenuRepository menus, IRoleMenuRepository roleMenus)
+        public RoleService(IRoleRepository roles, IUserRoleRepository userRoles, IMenuRepository menus, IRoleMenuRepository roleMenus)
         {
-            this.users = users;
             this.roles = roles;
             this.userRoles = userRoles;
             this.menus = menus;
@@ -45,12 +44,12 @@ namespace Object.Application.Object
         public async Task<List<MenuTree>> GetMenuTree(int roleId, int parentID)
         {
             List<MenuTree> result = new List<MenuTree>();
-            List<Menu> list = (from a in await menus.GetListAsync()
-                               join b in await roleMenus.GetListAsync() on a.Id equals b.MenuId
-                               join c in await userRoles.GetListAsync() on b.RoleId equals c.Id
-                               where c.RoleId == roleId && a.ParentId == parentID
-                               orderby a.Sort
-                               select a).ToList();
+
+            var list = (from a in menus
+                        join b in roleMenus on a.Id equals b.MenuId
+                        where b.RoleId == roleId && a.ParentId == parentID
+                        orderby a.Sort
+                        select a).ToList();
 
             foreach (var menu in list)
             {
@@ -150,14 +149,32 @@ namespace Object.Application.Object
         {
             await roleMenus.DeleteAsync(t => t.RoleId == roleId && t.MenuId == menuId, true);
 
-            var list = from t in await menus.GetListAsync()
-                       where t.ParentId == menuId
-                       select t;
+            var list = (from t in menus
+                        where t.ParentId == menuId
+                        select t).ToList();
 
             foreach (var item in list)
             {
                 await DeleteRoleMenu(roleId, item.Id);
             }
+        }
+
+        public async Task<Response<string>> CreateRoleMenu(int roleId, string menuIds)
+        {
+            var result = new Response<string>();
+
+            string[] array = menuIds.Split(",");
+
+            await roleMenus.DeleteAsync(t => t.RoleId == roleId);
+
+            foreach (var item in array)
+            {
+                await roleMenus.InsertAsync(new RoleMenu() { RoleId = roleId, MenuId = item.TryToInt() });
+            }
+
+            result.msg = "角色权限分配成功！";
+
+            return result;
         }
     }
 }

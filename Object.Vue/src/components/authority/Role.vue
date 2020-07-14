@@ -115,6 +115,7 @@
                             size="mini"
                             type="warning"
                             icon="el-icon-setting"
+                            @click="showMenuDialog(scope.row)"
                         >
                             分配权限
                         </el-button>
@@ -181,6 +182,31 @@
                     </el-button>
                 </span>
             </el-dialog>
+
+            <el-dialog
+                title="分配权限"
+                :visible.sync="menuDialogVisible"
+                width="40%"
+                @close="menuDialogClosed"
+            >
+                <el-tree
+                    :data="menuList"
+                    :props="treeProps"
+                    show-checkbox
+                    node-key="id"
+                    :default-checked-keys="defKeys"
+                    ref="treeRef"
+                ></el-tree>
+
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="menuDialogVisible = false">
+                        取 消
+                    </el-button>
+                    <el-button type="primary" @click="allotMenu">
+                        确 定
+                    </el-button>
+                </span>
+            </el-dialog>
         </el-card>
     </div>
 </template>
@@ -229,6 +255,14 @@ export default {
                     },
                 ],
             },
+            menuDialogVisible: false,
+            menuList: [],
+            treeProps: {
+                label: "authName",
+                children: "children",
+            },
+            defKeys: [],
+            roleId: "",
         };
     },
     created() {
@@ -347,6 +381,52 @@ export default {
                 }
             } else {
                 this.$message.info("已取消删除！");
+            }
+        },
+        async showMenuDialog(role) {
+            this.roleId = role.id;
+            const { data: res } = await this.$http.get("menu/tree");
+
+            if (res.status === 200) {
+                this.menuList = res.data;
+                this.getLeafKeys(role, this.defKeys);
+            } else {
+                this.$message.error(res.msg);
+            }
+
+            this.menuDialogVisible = true;
+        },
+        menuDialogClosed() {
+            this.menuList = [];
+            this.defKeys = [];
+        },
+        getLeafKeys(node, array) {
+            if (node.children.length === 0) {
+                return array.push(node.id);
+            }
+
+            node.children.forEach((item) => {
+                this.getLeafKeys(item, array);
+            });
+        },
+        async allotMenu() {
+            const keys = [
+                ...this.$refs.treeRef.getCheckedKeys(),
+                ...this.$refs.treeRef.getHalfCheckedNodes(),
+            ];
+
+            const idStr = keys.join(",");
+
+            const { data: res } = await this.$http.post(
+                `role/${this.roleId} /menu/${idStr}`
+            );
+
+            if (res.status === 200) {
+                this.$message.success(res.msg);
+                this.getRoleList();
+                this.menuDialogVisible = false;
+            } else {
+                this.$message.error(res.msg);
             }
         },
     },

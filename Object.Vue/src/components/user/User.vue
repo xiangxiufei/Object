@@ -88,7 +88,7 @@
             <el-dialog
                 title="添加用户"
                 :visible.sync="addDialogVisible"
-                width="50%"
+                width="40%"
                 @close="addDialogClosed"
             >
                 <el-form
@@ -141,7 +141,7 @@
             <el-dialog
                 title="修改用户"
                 :visible.sync="editDialogVisible"
-                width="50%"
+                width="40%"
                 @close="editDialogClosed"
             >
                 <el-form

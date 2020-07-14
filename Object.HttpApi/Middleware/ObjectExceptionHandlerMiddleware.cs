@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Object.Domain.Shared;
 using Object.Domain.Shared.Extensions;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Object.HttpApi.Middleware

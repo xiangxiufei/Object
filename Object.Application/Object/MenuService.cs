@@ -41,6 +41,17 @@ namespace Object.Application.Object
 
                 result = list.ToJson();
             }
+            else if (type.Equals("tree"))
+            {
+                var tree = new Response<List<MenuTree>>()
+                {
+                    status = 200,
+                    msg = "加载成功",
+                    data = await GetMenuTree(0)
+                };
+
+                result = tree.ToJson();
+            }
 
             return result;
         }
@@ -58,18 +69,45 @@ namespace Object.Application.Object
         public async Task<List<MenuTree>> GetMenuTree(string userName, int parentID)
         {
             List<MenuTree> result = new List<MenuTree>();
-            List<Menu> list = (from a in await menus.GetListAsync()
-                               join b in await roleMenus.GetListAsync() on a.Id equals b.MenuId
-                               join c in await userRoles.GetListAsync() on b.RoleId equals c.Id
-                               join d in await users.GetListAsync() on c.UserId equals d.Id
-                               where d.Name == userName && a.ParentId == parentID
-                               orderby a.Sort
-                               select a).ToList();
+
+            var list = (from a in menus
+                        join b in roleMenus on a.Id equals b.MenuId
+                        join c in userRoles on b.RoleId equals c.Id
+                        join d in users on c.UserId equals d.Id
+                        where d.Name == userName && a.ParentId == parentID
+                        orderby a.Sort
+                        select a).ToList();
 
             foreach (var menu in list)
             {
                 var dto = ObjectMapper.Map<Menu, MenuTree>(menu);
                 dto.Children = await GetMenuTree(userName, menu.Id);
+
+                result.Add(dto);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 有个bug,明天修改
+        /// </summary>
+        public async Task<List<MenuTree>> GetMenuTree(int parentID)
+        {
+            List<MenuTree> result = new List<MenuTree>();
+
+            var list = (from a in menus
+                        join b in roleMenus on a.Id equals b.MenuId
+                        join c in userRoles on b.RoleId equals c.Id
+                        join d in users on c.UserId equals d.Id
+                        where a.ParentId == parentID
+                        orderby a.Sort
+                        select a).ToList();
+
+            foreach (var menu in list)
+            {
+                var dto = ObjectMapper.Map<Menu, MenuTree>(menu);
+                dto.Children = await GetMenuTree(menu.Id);
 
                 result.Add(dto);
             }
