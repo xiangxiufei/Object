@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Object.Application;
 using Object.EntityFrameworkCore;
 using Object.HttpApi.Extensions;
+using Object.HttpApi.Filters;
 using Object.HttpApi.Middleware;
 using System.Linq;
 using Volo.Abp;
@@ -30,7 +31,7 @@ namespace Object.HttpApi
                 if (index > -1)
                     options.Filters.RemoveAt(index);
 
-                //options.Filters.Add(typeof(ObjectExceptionFilter));
+                options.Filters.Add(typeof(ObjectApiLogFilter));
             });
 
             context.Services.AddCors();
