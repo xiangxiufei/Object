@@ -72,7 +72,7 @@ namespace Object.Application.Object
 
             var list = (from a in menus
                         join b in roleMenus on a.Id equals b.MenuId
-                        join c in userRoles on b.RoleId equals c.Id
+                        join c in userRoles on b.RoleId equals c.RoleId
                         join d in users on c.UserId equals d.Id
                         where d.Name == userName && a.ParentId == parentID
                         orderby a.Sort
@@ -89,17 +89,11 @@ namespace Object.Application.Object
             return result;
         }
 
-        /// <summary>
-        /// 有个bug,明天修改
-        /// </summary>
         public async Task<List<MenuTree>> GetMenuTree(int parentID)
         {
             List<MenuTree> result = new List<MenuTree>();
 
             var list = (from a in menus
-                        join b in roleMenus on a.Id equals b.MenuId
-                        join c in userRoles on b.RoleId equals c.Id
-                        join d in users on c.UserId equals d.Id
                         where a.ParentId == parentID
                         orderby a.Sort
                         select a).ToList();
