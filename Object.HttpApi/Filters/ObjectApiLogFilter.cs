@@ -43,7 +43,7 @@ namespace Object.HttpApi.Filters
             }
 
             log.Info($"地址：{url} \n " +
-                     $"方式：{method} \n " +
+                     $"方法：{method} \n " +
                      $"参数：{actionArguments}\n " +
                      $"结果：{msg}\n " +
                      $"耗时：{Stopwatch.Elapsed.TotalMilliseconds} 毫秒");

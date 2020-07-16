@@ -4,9 +4,10 @@
     {
         public int Status { get; set; } = 404;
         public string Value { get; set; } = "No Found";
+
         public Response<string> response = new Response<string>() { };
 
-        public ApiResponse(StatusCode apiCode, string msg = "系统繁忙，请稍后再试！")
+        public ApiResponse(StatusCode apiCode, string msg = "系统异常，请稍后再试！")
         {
             switch (apiCode)
             {

@@ -15,7 +15,8 @@ namespace Object.Application
 
             CreateMap<User, UserDto>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(s => s.Status == "0" ? false : true));
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(s => s.Status == "0" ? false : true))
+                .ForMember(dest => dest.roleName, opt => opt.Ignore());
 
             CreateMap<CreateUserDto, User>()
                  .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.UserName))

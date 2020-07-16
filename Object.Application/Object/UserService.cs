@@ -11,11 +11,13 @@ namespace Object.Application.Object
     public class UserService : ObjectAppService, IUserService
     {
         private readonly IUserRepository users;
+        private readonly IRoleRepository roles;
         private readonly IUserRoleRepository userRoles;
 
-        public UserService(IUserRepository users, IUserRoleRepository userRoles)
+        public UserService(IUserRepository users, IRoleRepository roles, IUserRoleRepository userRoles)
         {
             this.users = users;
+            this.roles = roles;
             this.userRoles = userRoles;
         }
 
@@ -58,19 +60,25 @@ namespace Object.Application.Object
 
             var count = await users.GetCountAsync();
 
-            var list = users.Where(t => string.IsNullOrEmpty(input.Query) || t.Name.Contains(input.Query))
-                            .OrderBy(t => t.Id)
-                            .PageByIndex(input.PageNum, input.PageSize)
-                            .Select(t => new UserDto
-                            {
-                                Id = t.Id,
-                                UserName = t.Name,
-                                Age = t.Age,
-                                Sex = t.Sex,
-                                Mobile = t.Mobile,
-                                Email = t.Email,
-                                Status = t.Status == "0" ? false : true
-                            }).ToList();
+            var list = ((from a in users
+                         join b in userRoles on a.Id equals b.UserId into tempb
+                         from b in tempb.DefaultIfEmpty()
+                         join c in roles on b.RoleId equals c.Id into tempc
+                         from c in tempc.DefaultIfEmpty()
+                         where string.IsNullOrEmpty(input.Query) || a.Name.Contains(input.Query)
+                         orderby a.Id
+                         select new UserDto
+                         {
+                             Id = a.Id,
+                             UserName = a.Name,
+                             Age = a.Age,
+                             Sex = a.Sex,
+                             Mobile = a.Mobile,
+                             Email = a.Email,
+                             Status = a.Status == "0" ? false : true,
+                             roleName = c.Name
+                         }).Skip(input.PageSize * (input.PageNum - 1))
+                           .Take(input.PageSize)).ToList();
 
             result.Success(new PagedList<UserDto>(count.TryToInt(), list));
 
@@ -135,6 +143,27 @@ namespace Object.Application.Object
             await userRoles.DeleteAsync(t => t.UserId == id);
 
             result.msg = "用户删除成功！";
+
+            return result;
+        }
+
+        public async Task<Response<string>> UpdateUserRole(int userId, int roleId)
+        {
+            var result = new Response<string>();
+
+            var userRole = await userRoles.FindAsync(t => t.UserId == userId);
+
+            if (userRole == null)
+            {
+                await userRoles.InsertAsync(new UserRole() { UserId = userId, RoleId = roleId });
+            }
+            else
+            {
+                userRole.RoleId = roleId;
+                await userRoles.UpdateAsync(userRole);
+            }
+
+            result.msg = "用户角色分配成功！";
 
             return result;
         }

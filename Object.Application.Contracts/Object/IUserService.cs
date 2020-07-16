@@ -19,6 +19,8 @@ namespace Object.Application.Contracts.Object
         Task<Response<UserDto>> UpdateUser(int id, UpdateUserDto dto);
 
         Task<Response<string>> DeleteUser(int id);
+
+        Task<Response<string>> UpdateUserRole(int userId, int roleId);
     }
 
     public class UserRequest
@@ -43,6 +45,8 @@ namespace Object.Application.Contracts.Object
         public string Email { get; set; }
 
         public bool Status { get; set; }
+
+        public string roleName { get; set; }
     }
 
     public class CreateUserDto

@@ -28,6 +28,8 @@ import {
     MessageBox,
     Tag,
     Tree,
+    Select,
+    Option,
 } from "element-ui";
 
 Vue.use(Button);
@@ -56,5 +58,7 @@ Vue.use(Dialog);
 Vue.use(Radio);
 Vue.use(Tag);
 Vue.use(Tree);
+Vue.use(Select);
+Vue.use(Option);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;

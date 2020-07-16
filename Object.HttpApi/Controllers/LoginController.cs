@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Object.Application.Contracts.Object;
 using Object.Domain.Shared;
-using Object.HttpApi.Filters;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
 using static Object.Domain.Shared.Jwt;
@@ -20,6 +18,7 @@ namespace Object.HttpApi.Controllers
             this.service = service;
         }
 
+        [HttpPost]
         public async Task<Response<UserResponse>> Login([FromBody] UserRequest user)
         {
             return await service.Login(user);

@@ -37,6 +37,7 @@
                 <el-table-column label="年龄" prop="age"></el-table-column>
                 <el-table-column label="电话" prop="mobile"></el-table-column>
                 <el-table-column label="邮箱" prop="email"></el-table-column>
+                <el-table-column label="角色" prop="roleName"></el-table-column>
                 <el-table-column label="状态">
                     <template slot-scope="scope">
                         <el-switch
@@ -45,20 +46,24 @@
                         ></el-switch>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" width="180px">
+                <el-table-column label="操作" width="300px">
                     <template slot-scope="scope">
                         <el-button
                             type="primary"
                             icon="el-icon-edit"
                             size="mini"
                             @click="showEditDialog(scope.row.id)"
-                        ></el-button>
+                        >
+                            编辑
+                        </el-button>
                         <el-button
                             type="danger"
                             icon="el-icon-delete"
                             size="mini"
                             @click="deleteUser(scope.row.id)"
-                        ></el-button>
+                        >
+                            删除
+                        </el-button>
                         <el-tooltip
                             effect="dark"
                             content="分配角色"
@@ -69,7 +74,10 @@
                                 type="warning"
                                 icon="el-icon-setting"
                                 size="mini"
-                            ></el-button>
+                                @click="showRoleDialog(scope.row)"
+                            >
+                                分配角色
+                            </el-button>
                         </el-tooltip>
                     </template>
                 </el-table-column>
@@ -190,6 +198,41 @@
                     </el-button>
                 </div>
             </el-dialog>
+
+            <el-dialog
+                title="分配角色"
+                :visible.sync="roleDialogVisible"
+                width="40%"
+                @close="roleDialogClosed"
+            >
+                <div>
+                    <p>当前的用户：{{ user.userName }}</p>
+                    <p>当前的角色：{{ user.roleName }}</p>
+                    <p>
+                        分配新角色：
+                        <el-select
+                            v-model="selectedRoleId"
+                            placeholder="请选择"
+                        >
+                            <el-option
+                                v-for="item in roleList"
+                                :key="item.id"
+                                :label="item.roleName"
+                                :value="item.id"
+                            ></el-option>
+                        </el-select>
+                    </p>
+                </div>
+
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="roleDialogVisible = false">
+                        取 消
+                    </el-button>
+                    <el-button type="primary" @click="addUserRole">
+                        确 定
+                    </el-button>
+                </span>
+            </el-dialog>
         </el-card>
     </div>
 </template>
@@ -288,6 +331,10 @@ export default {
                     { validator: checkMobile, trigger: "blur" },
                 ],
             },
+            roleDialogVisible: false,
+            user: {},
+            roleList: [],
+            selectedRoleId: "",
         };
     },
     created() {
@@ -410,6 +457,37 @@ export default {
             } else {
                 this.$message.info("已取消删除！");
             }
+        },
+        async showRoleDialog(user) {
+            this.user = user;
+            const { data: res } = await this.$http.get("role");
+
+            if (res.status === 200) {
+                this.roleList = res.data;
+                this.roleDialogVisible = true;
+            } else {
+                this.$message.error(res.msg);
+            }
+        },
+        async addUserRole() {
+            if (!this.selectedRoleId) {
+                return this.$message.error("请选择角色信息！");
+            }
+
+            const { data: res } = await this.$http.put(
+                `user/${this.user.id}/role/${this.selectedRoleId}`
+            );
+
+            if (res.status === 200) {
+                this.getUserList();
+                this.roleDialogVisible = false;
+            } else {
+                this.$message.error(res.msg);
+            }
+        },
+        roleDialogClosed() {
+            this.selectedRoleId = "";
+            this.user = {};
         },
     },
 };

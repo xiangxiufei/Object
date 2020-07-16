@@ -54,5 +54,11 @@ namespace Object.HttpApi.Controllers
         {
             return await service.DeleteUser(id);
         }
+
+        [HttpPut("{userId}/role/{roleId}")]
+        public async Task<Response<string>> UpdateUserRole([FromRoute]int userId, [FromRoute] int roleId)
+        {
+            return await service.UpdateUserRole(userId, roleId);
+        }
     }
 }
