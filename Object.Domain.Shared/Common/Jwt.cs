@@ -31,10 +31,10 @@ namespace Object.Domain.Shared
             return "Bearer " + new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
 
-        public static string GetUserName(string tkoen)
+        public static string GetUserName(string token)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
-            JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(tkoen);
+            JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(token);
 
             object userName;
             jwtToken.Payload.TryGetValue(ClaimTypes.Name, out userName);

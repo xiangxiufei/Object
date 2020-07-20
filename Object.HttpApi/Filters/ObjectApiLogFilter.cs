@@ -26,9 +26,9 @@ namespace Object.HttpApi.Filters
 
             string method = resultContext.HttpContext.Request.Method;
 
-            dynamic result = resultContext.Result.GetType().Name == "EmptyResult" ? new { Value = "无返回结果" } : resultContext.Result as dynamic;
+            dynamic result = resultContext.Result.GetType().Name == "EmptyResult" ? new { Value = "EmptyResult" } : resultContext.Result as dynamic;
 
-            string msg = "在返回结果前发生了异常";
+            string msg = "";
 
             try
             {
@@ -39,7 +39,6 @@ namespace Object.HttpApi.Filters
             }
             catch (System.Exception)
             {
-                msg = "日志未获取到结果，返回的数据无法序列化";
             }
 
             log.Info($"地址：{url} \n " +
