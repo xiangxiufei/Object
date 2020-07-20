@@ -1,4 +1,4 @@
-# Abp vNext - Vue ElementUI 权限管理系统
+# Abp vNext - Vue ElementUI
 
 0. 基于abp vnext搭建后端web api框架
 1. swagger + jwt 
