@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Object.EntityFrameworkCore.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Object.Application.Contracts", "Object.Application.Contracts\Object.Application.Contracts.csproj", "{236CE35B-35AF-44FE-ADE3-656BC7FEB412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Object.Application", "Object.Application\Object.Application.csproj", "{14AD080D-4A39-4575-AC36-E11B15E10D1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Object.Application", "Object.Application\Object.Application.csproj", "{14AD080D-4A39-4575-AC36-E11B15E10D1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Object.DbMigrator", "Object.DbMigrator\Object.DbMigrator.csproj", "{9CFAF682-33A7-4B45-AADB-DA55399B5813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{14AD080D-4A39-4575-AC36-E11B15E10D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14AD080D-4A39-4575-AC36-E11B15E10D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14AD080D-4A39-4575-AC36-E11B15E10D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFAF682-33A7-4B45-AADB-DA55399B5813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFAF682-33A7-4B45-AADB-DA55399B5813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFAF682-33A7-4B45-AADB-DA55399B5813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFAF682-33A7-4B45-AADB-DA55399B5813}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

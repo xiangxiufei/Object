@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Object.Domain.Object;
-using Object.Domain.Shared;
-using Volo.Abp.Data;
+using Object.Domain.Smkt;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Object.EntityFrameworkCore
@@ -20,6 +18,6 @@ namespace Object.EntityFrameworkCore
             modelBuilder.Configure();
         }
 
-        public DbSet<User> Student { get; set; }
+        public virtual DbSet<Info107> Info107 { get; set; }
     }
 }

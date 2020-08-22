@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Object.Domain.Object;
 using Object.Domain.Shared;
+using Object.Domain.Smkt;
 using Volo.Abp;
 
 namespace Object.EntityFrameworkCore
@@ -11,59 +11,100 @@ namespace Object.EntityFrameworkCore
         {
             Check.NotNull(builder, nameof(builder));
 
-            builder.Entity<User>(b =>
+            builder.Entity<Info107>(entity =>
             {
-                b.ToTable(ObjectConsts.DbTablePrefix + "User");
-                b.HasKey(e => e.Id);
-                //b.Property(e => e.Id).ValueGeneratedNever();
-                b.Property(e => e.Name).HasColumnName("Name").HasMaxLength(32).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Password).HasColumnName("Password").HasMaxLength(64).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Age).HasColumnName("Age").IsRequired().HasDefaultValue(0);
-                b.Property(e => e.Sex).HasColumnName("Sex").HasMaxLength(8).IsRequired().HasDefaultValue("2").IsUnicode(false);
-                b.Property(e => e.Mobile).HasColumnName("Mobile").HasMaxLength(20).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Email).HasColumnName("Email").HasMaxLength(20).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Status).HasColumnName("Status").HasMaxLength(1).IsRequired().HasDefaultValue("0").HasColumnType("char(1)");
-            });
+                entity.HasKey(e => e.Rydm)
+                    .HasName("info107_0");
 
-            builder.Entity<Role>(b =>
-            {
-                b.ToTable(ObjectConsts.DbTablePrefix + "Role");
-                b.HasKey(e => e.Id);
-                //b.Property(e => e.Id).ValueGeneratedNever();
-                b.Property(e => e.Name).HasColumnName("Name").HasMaxLength(32).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Description).HasColumnName("Description").HasMaxLength(128).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Sort).HasColumnName("Sort").IsRequired().HasDefaultValue(0);
-            });
+                entity.ToTable("info107");
 
-            builder.Entity<UserRole>(b =>
-            {
-                b.ToTable(ObjectConsts.DbTablePrefix + "UserRole");
-                b.HasKey(e => e.Id);
-                //b.Property(e => e.Id).ValueGeneratedNever();
-                b.Property(e => e.UserId).HasColumnName("UserId").IsRequired().HasDefaultValue(0);
-                b.Property(e => e.RoleId).HasColumnName("RoleId").IsRequired().HasDefaultValue(0);
-            });
+                entity.Property(e => e.Rydm)
+                    .HasColumnName("rydm")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength();
 
-            builder.Entity<Menu>(b =>
-            {
-                b.ToTable(ObjectConsts.DbTablePrefix + "Menu");
-                b.HasKey(e => e.Id);
-                b.Property(e => e.Id).ValueGeneratedNever();
-                b.Property(e => e.Name).HasColumnName("Name").HasMaxLength(32).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.ParentId).HasColumnName("ParentId").IsRequired().HasDefaultValue(0);
-                b.Property(e => e.Url).HasColumnName("Url").HasMaxLength(255).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Icon).HasColumnName("Icon").HasMaxLength(64).IsRequired().HasDefaultValue("").IsUnicode(false);
-                b.Property(e => e.Sort).HasColumnName("Sort").IsRequired().HasDefaultValue(0);
-                b.Property(e => e.Level).HasColumnName("Level").IsRequired().HasDefaultValue(0);
-            });
+                entity.Property(e => e.CompId)
+                    .HasColumnName("comp_id")
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .IsFixedLength();
 
-            builder.Entity<RoleMenu>(b =>
-            {
-                b.ToTable(ObjectConsts.DbTablePrefix + "RoleMenu");
-                b.HasKey(e => e.Id);
-                //b.Property(e => e.Id).ValueGeneratedNever();
-                b.Property(e => e.RoleId).HasColumnName("RoleId").IsRequired().HasDefaultValue(0);
-                b.Property(e => e.MenuId).HasColumnName("MenuId").IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.Dlzt)
+                    .IsRequired()
+                    .HasColumnName("dlzt")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.ExtKl)
+                    .HasColumnName("ext_kl")
+                    .HasMaxLength(8)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Firstdate)
+                    .HasColumnName("firstdate")
+                    .HasColumnType("smalldatetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Firstman)
+                    .IsRequired()
+                    .HasColumnName("firstman")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('9999')");
+
+                entity.Property(e => e.Kl)
+                    .HasColumnName("kl")
+                    .HasMaxLength(8)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Lastdate)
+                    .HasColumnName("lastdate")
+                    .HasColumnType("smalldatetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Lastman)
+                    .IsRequired()
+                    .HasColumnName("lastman")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('9999')");
+
+                entity.Property(e => e.Qx)
+                    .HasColumnName("qx")
+                    .HasMaxLength(60)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('000000000000000000000000000000000000000000000000000000000000')");
+
+                entity.Property(e => e.Ryjb)
+                    .IsRequired()
+                    .HasColumnName("ryjb")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Rymc)
+                    .IsRequired()
+                    .HasColumnName("rymc")
+                    .HasMaxLength(16)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ryzw)
+                    .IsRequired()
+                    .HasColumnName("ryzw")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.Xzdm)
+                    .IsRequired()
+                    .HasColumnName("xzdm")
+                    .HasMaxLength(4)
+                    .IsUnicode(false);
             });
         }
     }

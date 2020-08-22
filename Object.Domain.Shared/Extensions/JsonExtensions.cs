@@ -10,7 +10,12 @@ namespace Object.Domain.Shared.Extensions
     {
         public static object ToJson(this string Json)
         {
-            return Json == null ? null : JsonConvert.DeserializeObject(Json);
+            var serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return Json == null ? null : JsonConvert.DeserializeObject(Json, serializerSettings);
         }
 
         public static string ToJson(this object obj)

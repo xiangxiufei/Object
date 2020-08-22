@@ -11,7 +11,7 @@ namespace Object.Domain.Shared
         public static string GetToken(UserResponse user)
         {
             var claims = new[] {
-                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Name, user.Rydm),
                     new Claim(JwtRegisteredClaimNames.Iss,AppSettings.JWT.Issuer),
                     new Claim(JwtRegisteredClaimNames.Aud,AppSettings.JWT.Audience),
                     new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
@@ -36,16 +36,16 @@ namespace Object.Domain.Shared
             var jwtHandler = new JwtSecurityTokenHandler();
             JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(token);
 
-            object userName;
-            jwtToken.Payload.TryGetValue(ClaimTypes.Name, out userName);
+            object rydm;
+            jwtToken.Payload.TryGetValue(ClaimTypes.Name, out rydm);
 
-            return userName.ToString();
+            return rydm.ToString();
         }
 
         public class UserResponse
         {
-            public int Id { get; set; }
-            public string UserName { get; set; }
+            public string Rydm { get; set; }
+            public string Rymc { get; set; }
             public string Token { get; set; }
         }
     }

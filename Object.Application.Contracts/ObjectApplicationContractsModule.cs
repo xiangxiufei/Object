@@ -1,9 +1,9 @@
-﻿using Volo.Abp.Identity;
+﻿using Volo.Abp.Application;
 using Volo.Abp.Modularity;
 
 namespace Object.Application.Contracts
 {
-    [DependsOn(typeof(AbpIdentityApplicationContractsModule))]
+    [DependsOn(typeof(AbpDddApplicationContractsModule))]
     public class ObjectApplicationContractsModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

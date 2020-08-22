@@ -35,8 +35,8 @@
 
             response = new Response<string>()
             {
-                status = Status,
-                msg = Value
+                Status = Status,
+                Msg = Value
             };
         }
     }

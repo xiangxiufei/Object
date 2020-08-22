@@ -1,9 +1,9 @@
-﻿using Volo.Abp.Identity;
-using Volo.Abp.Modularity;
+﻿using Volo.Abp.Modularity;
+using Volo.Abp.Validation;
 
 namespace Object.Domain.Shared
 {
-    [DependsOn(typeof(AbpIdentityDomainSharedModule))]
+    [DependsOn(typeof(AbpValidationModule))]
     public class ObjectDomainSharedModule : AbpModule
     {
     }

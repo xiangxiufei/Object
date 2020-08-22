@@ -2,4 +2,3 @@ bin
 obj
 /.vs
 *.log
-node_modules

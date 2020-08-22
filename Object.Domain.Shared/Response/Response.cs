@@ -2,17 +2,17 @@
 {
     public class Response<T>
     {
-        public int status { get; set; } = 200;
+        public int Status { get; set; } = 200;
 
-        public string msg { get; set; } = "";
+        public string Msg { get; set; } = "";
 
-        public T data { get; set; }
+        public T Data { get; set; }
 
         public void Success(T data, string msg = "")
         {
-            this.status = 200;
-            this.msg = msg;
-            this.data = data;
+            this.Status = 200;
+            this.Msg = msg;
+            this.Data = data;
         }
     }
 }

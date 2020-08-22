@@ -7,7 +7,7 @@ namespace Object.HttpApi
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication<StartupModule>();
+            services.AddApplication<ObjectHttpApiModule>();
         }
 
         public void Configure(IApplicationBuilder app)
