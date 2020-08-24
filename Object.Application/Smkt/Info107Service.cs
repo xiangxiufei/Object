@@ -1,4 +1,5 @@
-﻿using Object.Application.Contracts.DTO;
+﻿using Object.Application.Contracts;
+using Object.Application.Contracts.DTO;
 using Object.Application.Contracts.Smkt;
 using Object.Domain.Shared;
 using Object.Domain.Shared.Smkt;
@@ -19,19 +20,19 @@ namespace Object.Application.Smkt
             this.users = users;
         }
 
-        public async Task<Response<UserResponse>> Login(UserRequest request)
+        public async Task<Response<LoginDto>> Login(LoginRequest request)
         {
-            var response = new Response<UserResponse>();
+            var response = new Response<LoginDto>();
 
             var user = await users.FindAsync(t => t.Rydm.Equals(request.Account));
 
-            var dto = ObjectMapper.Map<Info107, UserResponse>(user);
+            var dto = ObjectMapper.Map<Info107, LoginDto>(user);
 
             if (user != null)
             {
-                if (user.Kl.ToSmktEncrypt().Equals(request.Password))
+                if (user.Kl.Equals(request.Password.ToSmktEncrypt()))
                 {
-                    dto.Token = GetToken(dto);
+                    dto.Token = GetToken(dto.Rydm);
 
                     response.Status = 200;
                     response.Msg = "登录成功";

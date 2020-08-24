@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Object.Application.Contracts</name>
+    </assembly>
+    <members>
+        <member name="P:Object.Application.Contracts.DTO.LoginDto.Rydm">
+            <summary>
+            人员代码
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.LoginRequest.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.LoginRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -5,6 +5,11 @@
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Object.HttpApi.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="appsettings.json" />
     <None Remove="log4net.config" />
@@ -37,5 +42,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Object.Application\Object.Application.csproj" />
     <ProjectReference Include="..\Object.EntityFrameworkCore\Object.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Object.Application.Contracts.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Object.HttpApi.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

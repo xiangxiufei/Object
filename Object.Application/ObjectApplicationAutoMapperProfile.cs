@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Object.Application.Contracts.DTO;
 using Object.Domain.Smkt;
-using static Object.Domain.Shared.Jwt;
 
 namespace Object.Application
 {
@@ -8,7 +8,7 @@ namespace Object.Application
     {
         public ObjectApplicationAutoMapperProfile()
         {
-            CreateMap<Info107, UserResponse>()
+            CreateMap<Info107, LoginDto>()
                .ForMember(dest => dest.Token, opt => opt.Ignore());
 
             //CreateMap<Info107, UserRequest>()

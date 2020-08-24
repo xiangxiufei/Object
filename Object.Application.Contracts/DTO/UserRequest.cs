@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Object.Application.Contracts.DTO
+namespace Object.Application.Contracts
 {
-    public class UserRequest
+    public class LoginRequest
     {
         /// <summary>
         /// 账号

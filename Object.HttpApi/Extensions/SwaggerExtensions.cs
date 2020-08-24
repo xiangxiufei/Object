@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Object.HttpApi.Extensions
 {
@@ -17,6 +19,18 @@ namespace Object.HttpApi.Extensions
                     Title = "Object",
                 });
 
+                var apiPath = Path.Combine(AppContext.BaseDirectory, "Object.HttpApi.xml");
+                if (File.Exists(apiPath))
+                {
+                    options.IncludeXmlComments(apiPath, true);
+                }
+
+                var dtoPath = Path.Combine(AppContext.BaseDirectory, "Object.Application.Contracts.xml");
+                if (File.Exists(dtoPath))
+                {
+                    options.IncludeXmlComments(dtoPath);
+                }
+
                 var security = new OpenApiSecurityScheme
                 {
                     Description = "JWT授权，请输入 Bearer {Token} 进行身份验证",
@@ -24,6 +38,7 @@ namespace Object.HttpApi.Extensions
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 };
+
                 options.AddSecurityDefinition("oauth2", security);
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement { { security, new List<string>() } });
                 options.OperationFilter<AddResponseHeadersFilter>();

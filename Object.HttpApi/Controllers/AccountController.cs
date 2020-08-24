@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Object.Application.Contracts;
 using Object.Application.Contracts.DTO;
 using Object.Application.Contracts.Smkt;
 using Object.Domain.Shared;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
-using static Object.Domain.Shared.Jwt;
 
 namespace Object.HttpApi.Controllers
 {
@@ -18,10 +19,20 @@ namespace Object.HttpApi.Controllers
             this.service = service;
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
         [HttpPost]
-        public async Task<Response<UserResponse>> Login([FromForm] UserRequest user)
+        public async Task<Response<LoginDto>> Login([FromBody]LoginRequest request)
         {
-            return await service.Login(user);
+            return await service.Login(request);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public string Test()
+        {
+            return "测试成功";
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Object.Application
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddMaps<ObjectApplicationModule>(validate: true);
-                //options.AddProfile<ObjectApplicationAutoMapperProfile>(validate: true);
             });
         }
     }

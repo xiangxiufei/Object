@@ -31,15 +31,37 @@ namespace Object.HttpApi.Middleware
 
         private async Task ExceptionHandlerAsync(HttpContext context, Exception e)
         {
-            log.Error($"{context.Request.Path}|{e.Message}", e);
-
             context.Response.ContentType = "application/json";
 
             var result = new ApiResponse(StatusCode.CODE500, e.Message).response.ToJson();
-
             //var result = (new ApiResponse(StatusCode.CODE500)).response.ToJson();
 
+            ExceptionLog(context, e, result);
+
             await context.Response.WriteAsync(result);
+        }
+
+        private static void ExceptionLog(HttpContext context, Exception e, string result)
+        {
+            var rydm = Jwt.GetCurrentRydm(context);
+            var ip = context.Request.GetClientIp();
+
+            string url = context.Request.Path + context.Request.QueryString;
+
+            string method = context.Request.Method;
+
+            if (string.IsNullOrEmpty(rydm))
+            {
+                log.Error($"地址：{url} \n " +
+                     $"方法：{method} \t 客户端ip: {ip} \n" +
+                     $"结果：{result}\n ", e);
+            }
+            else
+            {
+                log.Error($"地址：{url} \n " +
+                     $"方法：{method} \t 当前用户：{rydm} \t 客户端ip：{ip} \n" +
+                     $"结果：{result}\n ", e);
+            }
         }
     }
 }

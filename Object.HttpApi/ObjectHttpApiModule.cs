@@ -32,8 +32,7 @@ namespace Object.HttpApi
                 if (index > -1)
                     options.Filters.RemoveAt(index);
 
-                options.Filters.Add(typeof(ObjectApiLogFilter));
-                options.Filters.Add(typeof(ValidationExceptionFilter));
+                options.Filters.Add(typeof(ObjectCustomFilter));
             });
 
             context.Services.AddCors();
@@ -57,7 +56,7 @@ namespace Object.HttpApi
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Object API");
-                //options.DefaultModelsExpandDepth(-1);
+                options.DefaultModelsExpandDepth(-1);
                 options.RoutePrefix = string.Empty;
             });
 

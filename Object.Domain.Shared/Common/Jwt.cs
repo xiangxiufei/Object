@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 using Object.Domain.Shared.Extensions;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,10 +9,10 @@ namespace Object.Domain.Shared
 {
     public class Jwt
     {
-        public static string GetToken(UserResponse user)
+        public static string GetToken(string rydm)
         {
             var claims = new[] {
-                    new Claim(ClaimTypes.Name, user.Rydm),
+                    new Claim(ClaimTypes.Name, rydm),
                     new Claim(JwtRegisteredClaimNames.Iss,AppSettings.JWT.Issuer),
                     new Claim(JwtRegisteredClaimNames.Aud,AppSettings.JWT.Audience),
                     new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
@@ -31,22 +32,26 @@ namespace Object.Domain.Shared
             return "Bearer " + new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
 
-        public static string GetUserName(string token)
+        public static string GetCurrentRydm(HttpContext httpContext)
         {
-            var jwtHandler = new JwtSecurityTokenHandler();
-            JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(token);
+            var token = httpContext.Request
+                       .Headers["Authorization"]
+                       .ToStringX().Replace("Bearer ", "");
 
-            object rydm;
-            jwtToken.Payload.TryGetValue(ClaimTypes.Name, out rydm);
+            if (!string.IsNullOrEmpty(token))
+            {
+                var jwtHandler = new JwtSecurityTokenHandler();
+                JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(token);
 
-            return rydm.ToString();
-        }
+                object rydm;
+                jwtToken.Payload.TryGetValue(ClaimTypes.Name, out rydm);
 
-        public class UserResponse
-        {
-            public string Rydm { get; set; }
-            public string Rymc { get; set; }
-            public string Token { get; set; }
+                return rydm.ToString();
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }
