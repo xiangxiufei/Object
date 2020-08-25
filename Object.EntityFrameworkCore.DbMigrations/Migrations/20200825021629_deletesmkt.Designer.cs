@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Object.EntityFrameworkCore.DbMigrations;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Object.EntityFrameworkCore.DbMigrations.Migrations
 {
     [DbContext(typeof(ObjectMigrationsDbContext))]
-    partial class ObjectMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200825021629_deletesmkt")]
+    partial class deletesmkt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,49 +29,42 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("comp_id")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("门店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
                     b.Property<string>("Bmdm")
                         .HasColumnName("bmdm")
                         .HasColumnType("varchar(2)")
-                        .HasComment("部门代码")
                         .HasMaxLength(2)
                         .IsUnicode(false);
 
                     b.Property<string>("Bp")
                         .HasColumnName("bp")
                         .HasColumnType("varchar(24)")
-                        .HasComment("BP机号")
                         .HasMaxLength(24)
                         .IsUnicode(false);
 
                     b.Property<string>("Bz")
                         .HasColumnName("bz")
                         .HasColumnType("varchar(255)")
-                        .HasComment("备注")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Code")
                         .HasColumnName("code")
                         .HasColumnType("varchar(6)")
-                        .HasComment("体系代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
                     b.Property<string>("CompHz")
                         .HasColumnName("comp_hz")
                         .HasColumnType("varchar(15)")
-                        .HasComment("货主")
                         .HasMaxLength(15)
                         .IsUnicode(false);
 
                     b.Property<string>("CompName")
                         .HasColumnName("comp_name")
                         .HasColumnType("varchar(200)")
-                        .HasComment("门店名称")
                         .HasMaxLength(200)
                         .IsUnicode(false);
 
@@ -80,49 +75,42 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("门店类型")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<string>("CwCompId")
                         .HasColumnName("cw_comp_id")
                         .HasColumnType("varchar(30)")
-                        .HasComment("第三方代码")
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
                     b.Property<string>("CwCompName")
                         .HasColumnName("cw_comp_name")
                         .HasColumnType("varchar(140)")
-                        .HasComment("第三方名称")
                         .HasMaxLength(140)
                         .IsUnicode(false);
 
                     b.Property<string>("Cz")
                         .HasColumnName("cz")
                         .HasColumnType("varchar(24)")
-                        .HasComment("传真")
                         .HasMaxLength(24)
                         .IsUnicode(false);
 
                     b.Property<string>("Dh1")
                         .HasColumnName("dh1")
                         .HasColumnType("varchar(24)")
-                        .HasComment("电话1")
                         .HasMaxLength(24)
                         .IsUnicode(false);
 
                     b.Property<string>("Dh2")
                         .HasColumnName("dh2")
                         .HasColumnType("varchar(24)")
-                        .HasComment("电话2")
                         .HasMaxLength(24)
                         .IsUnicode(false);
 
                     b.Property<string>("Dh3")
                         .HasColumnName("dh3")
                         .HasColumnType("varchar(24)")
-                        .HasComment("电话3")
                         .HasMaxLength(24)
                         .IsUnicode(false);
 
@@ -132,7 +120,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("登录状态")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -145,7 +132,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                     b.Property<string>("Email")
                         .HasColumnName("email")
                         .HasColumnType("varchar(24)")
-                        .HasComment("邮箱")
                         .HasMaxLength(24)
                         .IsUnicode(false);
 
@@ -153,7 +139,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("filemark")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("组织类型")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -161,8 +146,7 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("firstdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("创建人");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
@@ -171,47 +155,40 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(4)")
                         .HasDefaultValueSql("('9999')")
                         .IsFixedLength(true)
-                        .HasComment("创建时间")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<string>("FtpPassword")
                         .HasColumnName("ftp_password")
                         .HasColumnType("varchar(20)")
-                        .HasComment("ftp密码")
                         .HasMaxLength(20)
                         .IsUnicode(false);
 
                     b.Property<string>("FtpRevfilePath")
                         .HasColumnName("ftp_revfile_path")
                         .HasColumnType("varchar(30)")
-                        .HasComment("ftp接收该单位文件路径")
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
                     b.Property<string>("FtpSendfilePath")
                         .HasColumnName("ftp_sendfile_path")
                         .HasColumnType("varchar(30)")
-                        .HasComment("ftp发送该单位文件路径")
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
                     b.Property<string>("FtpServer")
                         .HasColumnName("ftp_server")
                         .HasColumnType("varchar(30)")
-                        .HasComment("ftp服务器")
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
                     b.Property<int?>("FtpTimeOut")
                         .HasColumnName("ftp_time_out")
-                        .HasColumnType("int")
-                        .HasComment("ftp连接超时设置");
+                        .HasColumnType("int");
 
                     b.Property<string>("FtpUser")
                         .HasColumnName("ftp_user")
                         .HasColumnType("varchar(20)")
-                        .HasComment("ftp用户名")
                         .HasMaxLength(20)
                         .IsUnicode(false);
 
@@ -219,8 +196,7 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lastdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("修改时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
@@ -229,7 +205,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(4)")
                         .HasDefaultValueSql("('9999')")
                         .IsFixedLength(true)
-                        .HasComment("修改人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -238,31 +213,26 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("lx")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("店类型")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<string>("Lxr")
                         .HasColumnName("lxr")
                         .HasColumnType("varchar(10)")
-                        .HasComment("联系人")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
                     b.Property<decimal?>("Mj")
                         .HasColumnName("mj")
-                        .HasColumnType("numeric(12, 2)")
-                        .HasComment("店面面积");
+                        .HasColumnType("numeric(12, 2)");
 
                     b.Property<int?>("Pos")
                         .HasColumnName("pos")
-                        .HasColumnType("int")
-                        .HasComment("Pos机台数");
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Pszk")
                         .HasColumnName("pszk")
-                        .HasColumnType("numeric(5, 2)")
-                        .HasComment("配送折扣");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<string>("Sjdj")
                         .IsRequired()
@@ -271,7 +241,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("是否显示进价")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -282,14 +251,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(6)")
                         .HasDefaultValueSql("('999999')")
                         .IsFixedLength(true)
-                        .HasComment("上级店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
                     b.Property<string>("Warehouseid")
                         .HasColumnName("warehouseid")
                         .HasColumnType("varchar(30)")
-                        .HasComment("配送仓库")
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
@@ -297,7 +264,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("yzbm")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("邮政编码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
@@ -308,14 +274,13 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('1')")
                         .IsFixedLength(true)
-                        .HasComment("执行价格")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.HasKey("CompId")
                         .HasName("info050_0");
 
-                    b.ToTable("info050","smkt");
+                    b.ToTable("info050");
                 });
 
             modelBuilder.Entity("Object.Domain.Smkt.Info107", b =>
@@ -324,7 +289,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("rydm")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("人员代码")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -332,7 +296,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("comp_id")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("门店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
@@ -343,14 +306,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("登录状态")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<string>("ExtKl")
                         .HasColumnName("ext_kl")
                         .HasColumnType("varchar(8)")
-                        .HasComment("人员口令(app)")
                         .HasMaxLength(8)
                         .IsUnicode(false);
 
@@ -358,8 +319,7 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("firstdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("创建时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
@@ -368,14 +328,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(4)")
                         .HasDefaultValueSql("('9999')")
                         .IsFixedLength(true)
-                        .HasComment("创建人员")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<string>("Kl")
                         .HasColumnName("kl")
                         .HasColumnType("varchar(8)")
-                        .HasComment("人员口令(前台)")
                         .HasMaxLength(8)
                         .IsUnicode(false);
 
@@ -383,8 +341,7 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lastdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("修改时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
@@ -393,7 +350,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(4)")
                         .HasDefaultValueSql("('9999')")
                         .IsFixedLength(true)
-                        .HasComment("修改人员")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -402,7 +358,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("qx")
                         .HasColumnType("varchar(60)")
                         .HasDefaultValueSql("('000000000000000000000000000000000000000000000000000000000000')")
-                        .HasComment("人员权限")
                         .HasMaxLength(60)
                         .IsUnicode(false);
 
@@ -411,7 +366,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("ryjb")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("人员级别")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -419,7 +373,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .IsRequired()
                         .HasColumnName("rymc")
                         .HasColumnType("varchar(16)")
-                        .HasComment("人员名称")
                         .HasMaxLength(16)
                         .IsUnicode(false);
 
@@ -429,7 +382,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("ryzw")
                         .HasColumnType("varchar(4)")
                         .HasDefaultValueSql("('')")
-                        .HasComment("人员职位")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -437,14 +389,13 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .IsRequired()
                         .HasColumnName("xzdm")
                         .HasColumnType("varchar(4)")
-                        .HasComment("小组代码")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.HasKey("Rydm")
                         .HasName("info107_0");
 
-                    b.ToTable("info107","smkt");
+                    b.ToTable("info107");
                 });
 
             modelBuilder.Entity("Object.Domain.Smkt.Info200", b =>
@@ -452,13 +403,11 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                     b.Property<string>("CompId")
                         .HasColumnName("comp_id")
                         .HasColumnType("nvarchar(8)")
-                        .HasComment("门店代码")
                         .HasMaxLength(8);
 
                     b.Property<string>("Spdm")
                         .HasColumnName("spdm")
                         .HasColumnType("varchar(13)")
-                        .HasComment("商品代码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
@@ -466,21 +415,18 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("aqkc_ts")
                         .HasColumnType("int")
-                        .HasDefaultValueSql("((3))")
-                        .HasComment("安全库存天数");
+                        .HasDefaultValueSql("((3))");
 
                     b.Property<string>("Bmdm")
                         .IsRequired()
                         .HasColumnName("bmdm")
                         .HasColumnType("varchar(2)")
-                        .HasComment("部门代码")
                         .HasMaxLength(2)
                         .IsUnicode(false);
 
                     b.Property<string>("Bz")
                         .HasColumnName("bz")
                         .HasColumnType("varchar(64)")
-                        .HasComment("备注")
                         .HasMaxLength(64)
                         .IsUnicode(false);
 
@@ -488,8 +434,7 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("bzl")
                         .HasColumnType("numeric(8, 2)")
-                        .HasDefaultValueSql("((1))")
-                        .HasComment("包装率");
+                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Bzlbz")
                         .IsRequired()
@@ -498,40 +443,34 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("包装率标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<short?>("Bzq")
                         .HasColumnName("bzq")
-                        .HasColumnType("smallint")
-                        .HasComment("保质期");
+                        .HasColumnType("smallint");
 
                     b.Property<string>("CSpdm")
                         .HasColumnName("c_spdm")
                         .HasColumnType("nvarchar(20)")
-                        .HasComment("第三方货号")
                         .HasMaxLength(20);
 
                     b.Property<string>("Ccfs")
                         .HasColumnName("ccfs")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("存储方式")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<string>("Ccsm")
                         .HasColumnName("ccsm")
                         .HasColumnType("varchar(255)")
-                        .HasComment("存储说明")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Cd")
                         .HasColumnName("cd")
                         .HasColumnType("varchar(50)")
-                        .HasComment("产地")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
@@ -547,7 +486,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                     b.Property<string>("CwFlbh")
                         .HasColumnName("cw_flbh")
                         .HasColumnType("varchar(50)")
-                        .HasComment("税收分类")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
@@ -555,14 +493,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("dhxs")
                         .HasColumnType("numeric(5, 2)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("订货销售");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<string>("Dldm")
                         .IsRequired()
                         .HasColumnName("dldm")
                         .HasColumnType("varchar(2)")
-                        .HasComment("大类代码")
                         .HasMaxLength(2)
                         .IsUnicode(false);
 
@@ -570,7 +506,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("dw1")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("整单位")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -579,7 +514,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("dw2")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("零单位")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -587,15 +521,13 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("firstdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("创建时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
                         .HasColumnName("firstman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("创建人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -603,7 +535,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("flag")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("整订标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -614,7 +545,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("联营标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -625,7 +555,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("生鲜标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -633,14 +562,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("flag_cb")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("是否拆包")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<string>("Ggxh")
                         .HasColumnName("ggxh")
                         .HasColumnType("varchar(50)")
-                        .HasComment("供货方代码")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
@@ -648,7 +575,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .IsRequired()
                         .HasColumnName("ghfdm")
                         .HasColumnType("varchar(6)")
-                        .HasComment("供货方序号")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
@@ -659,7 +585,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("是否进口商品")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -667,7 +592,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("is_ncp")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("是否农商品")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -678,14 +602,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('1')")
                         .IsFixedLength(true)
-                        .HasComment("进货方式")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Jhsj")
                         .HasColumnName("jhsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("首次进货时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<int>("KcsxTs")
                         .ValueGeneratedOnAdd()
@@ -697,22 +619,19 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("kcxx_ts")
                         .HasColumnType("int")
-                        .HasDefaultValueSql("((1))")
-                        .HasComment("库存下限天数");
+                        .HasDefaultValueSql("((1))");
 
                     b.Property<DateTime>("Lastdate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lastdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("修改时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
                         .HasColumnName("lastman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("修改人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -720,45 +639,38 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("min_dhsl")
                         .HasColumnType("numeric(12, 3)")
-                        .HasDefaultValueSql("((0.000))")
-                        .HasComment("最小订货量");
+                        .HasDefaultValueSql("((0.000))");
 
                     b.Property<decimal>("PmkcSl")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("pmkc_sl")
                         .HasColumnType("numeric(12, 3)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("排面库存数量");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<string>("Ppdm")
                         .HasColumnName("ppdm")
                         .HasColumnType("varchar(4)")
-                        .HasComment("品牌代码")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Qysj")
                         .HasColumnName("qysj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("起用时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Sb")
                         .HasColumnName("sb")
                         .HasColumnType("varchar(20)")
-                        .HasComment("商标")
                         .HasMaxLength(20)
                         .IsUnicode(false);
 
                     b.Property<decimal>("Sl")
                         .HasColumnName("sl")
-                        .HasColumnType("numeric(5, 2)")
-                        .HasComment("税率");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<string>("SpAbc")
                         .HasColumnName("sp_abc")
                         .HasColumnType("char(1)")
                         .IsFixedLength(true)
-                        .HasComment("商品ABC")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -772,7 +684,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                     b.Property<string>("SpHz")
                         .HasColumnName("sp_hz")
                         .HasColumnType("varchar(50)")
-                        .HasComment("货主")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
@@ -780,7 +691,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .IsRequired()
                         .HasColumnName("spmc")
                         .HasColumnType("varchar(64)")
-                        .HasComment("商品名称")
                         .HasMaxLength(64)
                         .IsUnicode(false);
 
@@ -789,7 +699,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("sptm")
                         .HasColumnType("char(20)")
                         .IsFixedLength(true)
-                        .HasComment("店内条码")
                         .HasMaxLength(20)
                         .IsUnicode(false);
 
@@ -800,7 +709,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("电子秤商品标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -811,7 +719,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("商品状态")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -827,13 +734,11 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
 
                     b.Property<DateTime?>("Ttsj")
                         .HasColumnName("ttsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("终止/淘汰时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Xh")
                         .HasColumnName("xh")
                         .HasColumnType("varchar(3)")
-                        .HasComment("供货方序号")
                         .HasMaxLength(3)
                         .IsUnicode(false);
 
@@ -841,21 +746,18 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("xhqc")
                         .HasColumnType("int")
-                        .HasDefaultValueSql("((0))")
-                        .HasComment("消耗期长");
+                        .HasDefaultValueSql("((0))");
 
                     b.Property<decimal?>("Xkc")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("xkc")
                         .HasColumnType("numeric(12, 2)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("虚库存");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<string>("Xldm")
                         .IsRequired()
                         .HasColumnName("xldm")
                         .HasColumnType("varchar(6)")
-                        .HasComment("小类代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
@@ -866,7 +768,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("部门销售标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -874,7 +775,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .IsRequired()
                         .HasColumnName("xzdm")
                         .HasColumnType("varchar(4)")
-                        .HasComment("小组代码")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -885,7 +785,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("整订标志")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -893,38 +792,33 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("zdtm")
                         .HasColumnType("char(13)")
                         .IsFixedLength(true)
-                        .HasComment("自带条码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
                     b.Property<string>("Zjm")
                         .HasColumnName("zjm")
                         .HasColumnType("nvarchar(20)")
-                        .HasComment("助记码")
                         .HasMaxLength(20);
 
                     b.Property<string>("Zldm")
                         .IsRequired()
                         .HasColumnName("zldm")
                         .HasColumnType("varchar(4)")
-                        .HasComment("中类代码")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<int>("Zpsl")
                         .HasColumnName("zpsl")
-                        .HasColumnType("int")
-                        .HasComment("赠品数量");
+                        .HasColumnType("int");
 
                     b.Property<int>("Zptj")
                         .HasColumnName("zptj")
-                        .HasColumnType("int")
-                        .HasComment("赠品条件");
+                        .HasColumnType("int");
 
                     b.HasKey("CompId", "Spdm")
                         .HasName("info200_0");
 
-                    b.ToTable("info200","smkt");
+                    b.ToTable("info200");
                 });
 
             modelBuilder.Entity("Object.Domain.Smkt.Info201", b =>
@@ -933,60 +827,50 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("comp_id")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("门店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
                     b.Property<string>("Spdm")
                         .HasColumnName("spdm")
                         .HasColumnType("varchar(13)")
-                        .HasComment("商品代码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
                     b.Property<decimal>("Cxhysj")
                         .HasColumnName("cxhysj")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("促销会员售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<decimal>("Cxjj")
                         .HasColumnName("cxjj")
-                        .HasColumnType("numeric(11, 4)")
-                        .HasComment("促销含税进价");
+                        .HasColumnType("numeric(11, 4)");
 
                     b.Property<DateTime?>("Cxjjsj")
                         .HasColumnName("cxjjsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("促销进价起始时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<decimal>("Cxsj")
                         .HasColumnName("cxsj")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("促销售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<decimal>("Cxzk")
                         .HasColumnName("cxzk")
-                        .HasColumnType("numeric(5, 2)")
-                        .HasComment("促销折扣");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<decimal>("Cxzxj")
                         .HasColumnName("cxzxj")
-                        .HasColumnType("numeric(9, 4)")
-                        .HasComment("促销整箱价");
+                        .HasColumnType("numeric(9, 4)");
 
                     b.Property<DateTime>("Firstdate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("firstdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("创建时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
                         .HasColumnName("firstman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("创建人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -999,49 +883,41 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
 
                     b.Property<decimal>("Ghfzk")
                         .HasColumnName("ghfzk")
-                        .HasColumnType("numeric(5, 2)")
-                        .HasComment("供货方折扣");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<decimal>("Hysj")
                         .HasColumnName("hysj")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("会员售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<decimal>("Jfbl")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("jfbl")
                         .HasColumnType("numeric(5, 2)")
-                        .HasDefaultValueSql("((1))")
-                        .HasComment("积分比例");
+                        .HasDefaultValueSql("((1))");
 
                     b.Property<decimal>("Jj")
                         .HasColumnName("jj")
-                        .HasColumnType("numeric(11, 4)")
-                        .HasComment("含税进价");
+                        .HasColumnType("numeric(11, 4)");
 
                     b.Property<decimal>("Jjl")
                         .HasColumnName("jjl")
-                        .HasColumnType("numeric(5, 2)")
-                        .HasComment("加价率");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<DateTime?>("Jjzzsj")
                         .HasColumnName("jjzzsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("促销进价终止时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<DateTime>("Lastdate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lastdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("修改时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
                         .HasColumnName("lastman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("修改人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -1049,84 +925,69 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lscxhysj")
                         .HasColumnType("numeric(9, 2)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("历史促销会员售价");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<decimal>("Lscxjj")
                         .HasColumnName("lscxjj")
-                        .HasColumnType("numeric(18, 7)")
-                        .HasComment("历史促销含税进价");
+                        .HasColumnType("numeric(18, 7)");
 
                     b.Property<decimal>("Lscxkl")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lscxkl")
                         .HasColumnType("numeric(7, 4)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("历史促销扣率");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<decimal>("Lscxsj")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lscxsj")
                         .HasColumnType("numeric(9, 2)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("历史促销售价");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<decimal>("Lscxzk")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lscxzk")
                         .HasColumnType("numeric(5, 2)")
-                        .HasDefaultValueSql("((0.00))")
-                        .HasComment("历史促销折扣");
+                        .HasDefaultValueSql("((0.00))");
 
                     b.Property<decimal>("Lscxzxj")
                         .HasColumnName("lscxzxj")
-                        .HasColumnType("numeric(9, 4)")
-                        .HasComment("历史促销整箱价");
+                        .HasColumnType("numeric(9, 4)");
 
                     b.Property<DateTime?>("Lsjjqs")
                         .HasColumnName("lsjjqs")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("历史促销进价起始时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<DateTime?>("Lsjjzz")
                         .HasColumnName("lsjjzz")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("历史促销进价终止时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<DateTime?>("Lsqssj")
                         .HasColumnName("lsqssj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("历史促销售价起始时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<DateTime?>("Lszzsj")
                         .HasColumnName("lszzsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("历史促销售价终止时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<decimal>("Psj1")
                         .HasColumnName("psj1")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("配送价一");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<decimal>("Psj2")
                         .HasColumnName("psj2")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("配送价二");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<decimal>("Psj3")
                         .HasColumnName("psj3")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("配送价三");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<DateTime?>("Qssj")
                         .HasColumnName("qssj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("促销售价起始时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<decimal>("Sj")
                         .HasColumnName("sj")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<string>("Spzt")
                         .IsRequired()
@@ -1135,14 +996,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(2)")
                         .HasDefaultValueSql("('00')")
                         .IsFixedLength(true)
-                        .HasComment("商品状态")
                         .HasMaxLength(2)
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("TransDate")
                         .HasColumnName("trans_date")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("传输时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("TransReason")
                         .IsRequired()
@@ -1151,7 +1010,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("传输原因")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
@@ -1162,29 +1020,25 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("传输状态")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<decimal>("Zk")
                         .HasColumnName("zk")
-                        .HasColumnType("numeric(5, 2)")
-                        .HasComment("折扣");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<decimal>("Zxj")
                         .HasColumnName("zxj")
-                        .HasColumnType("numeric(11, 4)")
-                        .HasComment("整箱价");
+                        .HasColumnType("numeric(11, 4)");
 
                     b.Property<DateTime?>("Zzsj")
                         .HasColumnName("zzsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("促销售价终止时间");
+                        .HasColumnType("smalldatetime");
 
                     b.HasKey("CompId", "Spdm")
                         .HasName("info201_0");
 
-                    b.ToTable("info201","smkt");
+                    b.ToTable("info201");
                 });
 
             modelBuilder.Entity("Object.Domain.Smkt.Info216", b =>
@@ -1192,7 +1046,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                     b.Property<string>("Kbdm")
                         .HasColumnName("kbdm")
                         .HasColumnType("varchar(13)")
-                        .HasComment("捆绑代码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
@@ -1201,7 +1054,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("comp_id")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("门店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
@@ -1209,15 +1061,13 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("firstdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("创建时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
                         .HasColumnName("firstman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("创建人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -1225,7 +1075,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .IsRequired()
                         .HasColumnName("kbmc")
                         .HasColumnType("varchar(40)")
-                        .HasComment("捆绑名称")
                         .HasMaxLength(40)
                         .IsUnicode(false);
 
@@ -1234,7 +1083,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("kbtm")
                         .HasColumnType("char(13)")
                         .IsFixedLength(true)
-                        .HasComment("捆绑条码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
@@ -1242,22 +1090,19 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lastdate")
                         .HasColumnType("smalldatetime")
-                        .HasDefaultValueSql("(getdate())")
-                        .HasComment("修改时间");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
                         .HasColumnName("lastman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("修改人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Qysj")
                         .HasColumnName("qysj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("起用时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Spzt")
                         .IsRequired()
@@ -1266,19 +1111,17 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnType("char(1)")
                         .HasDefaultValueSql("('0')")
                         .IsFixedLength(true)
-                        .HasComment("商品状态")
                         .HasMaxLength(1)
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Ttsj")
                         .HasColumnName("ttsj")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("淘汰时间");
+                        .HasColumnType("smalldatetime");
 
                     b.HasKey("Kbdm")
                         .HasName("info216_0");
 
-                    b.ToTable("info216","smkt");
+                    b.ToTable("info216");
                 });
 
             modelBuilder.Entity("Object.Domain.Smkt.Info217", b =>
@@ -1286,14 +1129,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                     b.Property<string>("Kbdm")
                         .HasColumnName("kbdm")
                         .HasColumnType("varchar(13)")
-                        .HasComment("捆绑代码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
                     b.Property<string>("Spdm")
                         .HasColumnName("spdm")
                         .HasColumnType("varchar(13)")
-                        .HasComment("商品代码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
@@ -1302,67 +1143,57 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("comp_id")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("门店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
                     b.Property<decimal>("Cxhysj")
                         .HasColumnName("cxhysj")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("促销会员售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<decimal>("Cxsj")
                         .HasColumnName("cxsj")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("促销售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<DateTime>("Firstdate")
                         .HasColumnName("firstdate")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("创建时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
                         .HasColumnName("firstman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("创建人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<decimal>("Hysj")
                         .HasColumnName("hysj")
-                        .HasColumnType("numeric(13, 6)")
-                        .HasComment("会员售价");
+                        .HasColumnType("numeric(13, 6)");
 
                     b.Property<decimal>("Kbsl")
                         .HasColumnName("kbsl")
-                        .HasColumnType("numeric(9, 2)")
-                        .HasComment("捆绑售价");
+                        .HasColumnType("numeric(9, 2)");
 
                     b.Property<DateTime>("Lastdate")
                         .HasColumnName("lastdate")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("修改时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
                         .HasColumnName("lastman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("修改人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<decimal>("Sj")
                         .HasColumnName("sj")
-                        .HasColumnType("numeric(13, 6)")
-                        .HasComment("售价");
+                        .HasColumnType("numeric(13, 6)");
 
                     b.HasKey("Kbdm", "Spdm")
                         .HasName("info217_0");
 
-                    b.ToTable("info217","smkt");
+                    b.ToTable("info217");
                 });
 
             modelBuilder.Entity("Object.Domain.Smkt.Info223", b =>
@@ -1371,14 +1202,12 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("comp_id")
                         .HasColumnType("char(6)")
                         .IsFixedLength(true)
-                        .HasComment("门店代码")
                         .HasMaxLength(6)
                         .IsUnicode(false);
 
                     b.Property<string>("Spdm")
                         .HasColumnName("spdm")
                         .HasColumnType("varchar(13)")
-                        .HasComment("商品代码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
@@ -1386,42 +1215,36 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("sptm")
                         .HasColumnType("char(13)")
                         .IsFixedLength(true)
-                        .HasComment("店内条码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
                     b.Property<string>("Bz")
                         .HasColumnName("bz")
                         .HasColumnType("varchar(64)")
-                        .HasComment("备注")
                         .HasMaxLength(64)
                         .IsUnicode(false);
 
                     b.Property<DateTime>("Firstdate")
                         .HasColumnName("firstdate")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("创建时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Firstman")
                         .IsRequired()
                         .HasColumnName("firstman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("创建人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
                     b.Property<DateTime>("Lastdate")
                         .HasColumnName("lastdate")
-                        .HasColumnType("smalldatetime")
-                        .HasComment("修改时间");
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Lastman")
                         .IsRequired()
                         .HasColumnName("lastman")
                         .HasColumnType("char(4)")
                         .IsFixedLength(true)
-                        .HasComment("修改人")
                         .HasMaxLength(4)
                         .IsUnicode(false);
 
@@ -1429,7 +1252,6 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasColumnName("zdtm")
                         .HasColumnType("char(13)")
                         .IsFixedLength(true)
-                        .HasComment("自带条码")
                         .HasMaxLength(13)
                         .IsUnicode(false);
 
@@ -1437,7 +1259,7 @@ namespace Object.EntityFrameworkCore.DbMigrations.Migrations
                         .HasName("info223_0")
                         .HasAnnotation("SqlServer:Clustered", false);
 
-                    b.ToTable("info223","smkt");
+                    b.ToTable("info223");
                 });
 #pragma warning restore 612, 618
         }

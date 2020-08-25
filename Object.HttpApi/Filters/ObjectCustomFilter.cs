@@ -56,17 +56,17 @@ namespace Object.HttpApi.Filters
             if (string.IsNullOrEmpty(rydm))
             {
                 log.Info($"地址：{url} \n " +
-                     $"方法：{method} \t 客户端ip: {ip} \n" +
-                     $"参数：{actionArguments}\n " +
-                     $"结果：{msg}\n " +
-                     $"耗时：{Stopwatch.Elapsed.TotalMilliseconds} 毫秒");
+                         $"方法：{method} \t 客户端ip: {ip} \n " +
+                         $"参数：{actionArguments} \n " +
+                         $"结果：{msg} \n " +
+                         $"耗时：{Stopwatch.Elapsed.TotalMilliseconds} 毫秒");
             }
             else
             {
                 log.Info($"地址：{url} \n " +
-                     $"方法：{method} \t 当前用户：{rydm} \t 客户端ip：{ip} \n" +
-                     $"参数：{actionArguments}\n " +
-                     $"结果：{msg}\n " +
+                     $"方法：{method} \t 当前用户：{rydm} \t 客户端ip：{ip} \n " +
+                     $"参数：{actionArguments} \n " +
+                     $"结果：{msg} \n " +
                      $"耗时：{Stopwatch.Elapsed.TotalMilliseconds} 毫秒");
             }
         }
@@ -102,15 +102,15 @@ namespace Object.HttpApi.Filters
             if (string.IsNullOrEmpty(rydm))
             {
                 log.Error($"地址：{url} \n " +
-                     $"方法：{method} \t 客户端ip: {ip} \n" +
-                     $"参数：{actionArguments}\n " +
+                     $"方法：{method} \t 客户端ip: {ip} \n " +
+                     $"参数：{actionArguments} \n " +
                      $"结果：{result}", context.Exception);
             }
             else
             {
                 log.Error($"地址：{url} \n " +
-                     $"方法：{method} \t 当前用户：{rydm} \t 客户端ip：{ip} \n" +
-                     $"参数：{actionArguments}\n " +
+                     $"方法：{method} \t 当前用户：{rydm} \t 客户端ip：{ip} \n " +
+                     $"参数：{actionArguments} \n " +
                      $"结果：{result}", context.Exception);
             }
         }

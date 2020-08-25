@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Object.EntityFrameworkCore.DbMigrations;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Object.EntityFrameworkCore.DbMigrations.Migrations
 {
     [DbContext(typeof(ObjectMigrationsDbContext))]
-    partial class ObjectMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200825094758_hc")]
+    partial class hc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

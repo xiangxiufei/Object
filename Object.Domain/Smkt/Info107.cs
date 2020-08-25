@@ -36,7 +36,7 @@ namespace Object.Domain.Smkt
         public string Kl { get; set; }
 
         /// <summary>
-        ///  人员权限 
+        /// 人员权限 
         /// </summary>
         public string Qx { get; set; }
 
@@ -51,12 +51,12 @@ namespace Object.Domain.Smkt
         public DateTime Firstdate { get; set; }
 
         /// <summary>
-        /// 最后修改人员
+        /// 修改人员
         /// </summary>
         public string Lastman { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// 修改时间
         /// </summary>
         public DateTime Lastdate { get; set; }
 

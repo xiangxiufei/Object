@@ -10,11 +10,11 @@ using Volo.Abp.AspNetCore.Mvc;
 namespace Object.HttpApi.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class AccountController : AbpController
+    public class UserController : AbpController
     {
         private readonly IInfo107Service service;
 
-        public AccountController(IInfo107Service service)
+        public UserController(IInfo107Service service)
         {
             this.service = service;
         }
@@ -30,9 +30,9 @@ namespace Object.HttpApi.Controllers
 
         [HttpGet]
         [Authorize]
-        public string Test()
+        public async Task<Response<CompDto>> GetCompInfo(string compId)
         {
-            return "测试成功";
+            return await service.GetCompInfo(compId);
         }
     }
 }

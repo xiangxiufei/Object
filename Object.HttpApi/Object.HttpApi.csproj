@@ -41,7 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Object.Application\Object.Application.csproj" />
-    <ProjectReference Include="..\Object.EntityFrameworkCore\Object.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Object.EntityFrameworkCore.DbMigrations\Object.EntityFrameworkCore.DbMigrations.csproj" />
   </ItemGroup>
 
   <ItemGroup>

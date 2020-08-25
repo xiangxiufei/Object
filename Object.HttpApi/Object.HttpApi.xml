@@ -4,7 +4,7 @@
         <name>Object.HttpApi</name>
     </assembly>
     <members>
-        <member name="M:Object.HttpApi.Controllers.AccountController.Login(Object.Application.Contracts.LoginRequest)">
+        <member name="M:Object.HttpApi.Controllers.UserController.Login(Object.Application.Contracts.LoginRequest)">
             <summary>
             登录
             </summary>

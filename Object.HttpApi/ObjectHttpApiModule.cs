@@ -25,6 +25,15 @@ namespace Object.HttpApi
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            ConfigureMvcOptions();
+            //context.Services.AddRouting();
+            context.Services.AddCors();
+            context.Services.AddSwagger();
+            context.Services.AddAuthorization();
+        }
+
+        private void ConfigureMvcOptions()
+        {
             Configure<MvcOptions>(options =>
             {
                 var index = options.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
@@ -34,10 +43,6 @@ namespace Object.HttpApi
 
                 options.Filters.Add(typeof(ObjectCustomFilter));
             });
-
-            context.Services.AddCors();
-            context.Services.AddSwagger();
-            context.Services.AddAuthorization();
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)

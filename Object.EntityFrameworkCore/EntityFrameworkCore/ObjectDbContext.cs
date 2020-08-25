@@ -18,6 +18,12 @@ namespace Object.EntityFrameworkCore
             modelBuilder.Configure();
         }
 
+        public virtual DbSet<Info050> Info050 { get; set; }
         public virtual DbSet<Info107> Info107 { get; set; }
+        public virtual DbSet<Info200> Info200 { get; set; }
+        public virtual DbSet<Info201> Info201 { get; set; }
+        public virtual DbSet<Info216> Info216 { get; set; }
+        public virtual DbSet<Info217> Info217 { get; set; }
+        public virtual DbSet<Info223> Info223 { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Object.Domain.Shared.Extensions
@@ -10,34 +9,19 @@ namespace Object.Domain.Shared.Extensions
     {
         public static object ToJson(this string Json)
         {
-            var serializerSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            return Json == null ? null : JsonConvert.DeserializeObject(Json, serializerSettings);
+            return Json == null ? null : JsonConvert.DeserializeObject(Json);
         }
 
         public static string ToJson(this object obj)
         {
-            var serializerSettings = new JsonSerializerSettings
-            {
-                DateFormatString = "yyyy-MM-dd HH:mm:ss",
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            return JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings);
+            var timeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
+            return JsonConvert.SerializeObject(obj, timeConverter);
         }
 
         public static string ToJson(this object obj, string datetimeformats)
         {
-            var serializerSettings = new JsonSerializerSettings
-            {
-                DateFormatString = datetimeformats,
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            return JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings);
+            var timeConverter = new IsoDateTimeConverter { DateTimeFormat = datetimeformats };
+            return JsonConvert.SerializeObject(obj, timeConverter);
         }
 
         public static T ToObject<T>(this string Json)
