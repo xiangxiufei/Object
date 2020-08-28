@@ -1283,6 +1283,132 @@ namespace Object.EntityFrameworkCore
             });
 
             #endregion Info223
+
+            #region Info702
+
+            builder.Entity<Info702>(entity =>
+            {
+                entity.HasKey(e => e.Bzdm)
+                    .HasName("info702_0");
+
+                entity.ToTable("info702", ObjectConsts.DbSchema);
+
+                entity.Property(e => e.Bzdm)
+                    .HasColumnName("bzdm")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Bshbz)
+                    .IsRequired()
+                    .HasColumnName("bshbz")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Bzlx)
+                    .IsRequired()
+                    .HasColumnName("bzlx")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Bzmc)
+                    .IsRequired()
+                    .HasColumnName("bzmc")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BzmcE)
+                    .HasColumnName("bzmc_e")
+                    .HasMaxLength(8)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.Dlzt)
+                    .IsRequired()
+                    .HasColumnName("dlzt")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Firstdate)
+                    .HasColumnName("firstdate")
+                    .HasColumnType("smalldatetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Firstman)
+                    .IsRequired()
+                    .HasColumnName("firstman")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('9999')");
+
+                entity.Property(e => e.Fkzddw)
+                    .HasColumnName("fkzddw")
+                    .HasColumnType("numeric(9, 2)")
+                    .HasDefaultValueSql("((100))");
+
+                entity.Property(e => e.Fkzxdw)
+                    .HasColumnName("fkzxdw")
+                    .HasColumnType("numeric(9, 2)")
+                    .HasDefaultValueSql("((0.01))");
+
+                entity.Property(e => e.Hl)
+                    .HasColumnName("hl")
+                    .HasColumnType("numeric(18, 7)");
+
+                entity.Property(e => e.Hotkey)
+                    .IsRequired()
+                    .HasColumnName("hotkey")
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('00')");
+
+                entity.Property(e => e.Lastdate)
+                    .HasColumnName("lastdate")
+                    .HasColumnType("smalldatetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Lastman)
+                    .IsRequired()
+                    .HasColumnName("lastman")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('9999')");
+
+                entity.Property(e => e.Qtsybz)
+                    .IsRequired()
+                    .HasColumnName("qtsybz")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('1')");
+
+                entity.Property(e => e.Sqhbz)
+                    .IsRequired()
+                    .HasColumnName("sqhbz")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Zlbz)
+                    .IsRequired()
+                    .HasColumnName("zlbz")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+            });
+
+            #endregion Info702
         }
     }
 }

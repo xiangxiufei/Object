@@ -25,5 +25,6 @@ namespace Object.EntityFrameworkCore
         public virtual DbSet<Info216> Info216 { get; set; }
         public virtual DbSet<Info217> Info217 { get; set; }
         public virtual DbSet<Info223> Info223 { get; set; }
+        public virtual DbSet<Info702> Info702 { get; set; }
     }
 }

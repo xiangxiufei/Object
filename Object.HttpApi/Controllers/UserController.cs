@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Object.Application.Contracts;
 using Object.Application.Contracts.DTO;
 using Object.Application.Contracts.Smkt;
@@ -26,13 +25,6 @@ namespace Object.HttpApi.Controllers
         public async Task<Response<LoginDto>> Login([FromBody]LoginRequest request)
         {
             return await service.Login(request);
-        }
-
-        [HttpGet]
-        [Authorize]
-        public async Task<Response<CompDto>> GetCompInfo(string compId)
-        {
-            return await service.GetCompInfo(compId);
         }
     }
 }

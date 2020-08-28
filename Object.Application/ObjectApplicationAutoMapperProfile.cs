@@ -11,8 +11,7 @@ namespace Object.Application
             CreateMap<Info107, LoginDto>()
                .ForMember(dest => dest.Token, opt => opt.Ignore());
 
-            CreateMap<Info050, CompDto>();
-            //CreateMap<Info107, UserRequest>()
+            CreateMap<Info702, PaymentMethod>();
             //   .ForMember(dest => dest.Account, opt => opt.MapFrom(src => src.Rydm))
             //   .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Kl));
         }

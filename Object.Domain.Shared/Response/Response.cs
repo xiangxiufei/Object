@@ -14,5 +14,11 @@
             this.Msg = msg;
             this.Data = data;
         }
+
+        public void Failure(string msg)
+        {
+            this.Status = 500;
+            this.Msg = msg;
+        }
     }
 }

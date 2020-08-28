@@ -4,6 +4,16 @@
         <name>Object.HttpApi</name>
     </assembly>
     <members>
+        <member name="M:Object.HttpApi.Controllers.GoodsController.Query(Object.Application.Contracts.DTO.GoodsQueryDto)">
+            <summary>
+            商品查询
+            </summary>
+        </member>
+        <member name="M:Object.HttpApi.Controllers.Pay.GetPaymentMethods">
+            <summary>
+            币种代码查询
+            </summary>
+        </member>
         <member name="M:Object.HttpApi.Controllers.UserController.Login(Object.Application.Contracts.LoginRequest)">
             <summary>
             登录

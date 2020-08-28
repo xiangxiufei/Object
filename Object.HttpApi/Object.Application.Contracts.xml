@@ -4,9 +4,44 @@
         <name>Object.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="P:Object.Application.Contracts.DTO.GoodsDto.Spdm">
+            <summary>
+            商品代码
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.DTO.GoodsDto.Spmc">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.DTO.GoodsDto.Sptm">
+            <summary>
+            商品条码
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.DTO.GoodsDto.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.DTO.GoodsQueryDto.CompId">
+            <summary>
+            门店代码
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.DTO.GoodsQueryDto.Sptm">
+            <summary>
+            商品条码
+            </summary>
+        </member>
         <member name="P:Object.Application.Contracts.DTO.LoginDto.Rydm">
             <summary>
             人员代码
+            </summary>
+        </member>
+        <member name="P:Object.Application.Contracts.DTO.LoginDto.Rymc">
+            <summary>
+            人员名称
             </summary>
         </member>
         <member name="P:Object.Application.Contracts.LoginRequest.Account">

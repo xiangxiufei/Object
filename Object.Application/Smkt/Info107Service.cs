@@ -14,21 +14,10 @@ namespace Object.Application.Smkt
     public class Info107Service : ApplicationService, IInfo107Service
     {
         private readonly IRepository<Info107> users;
-        private readonly IRepository<Info050> comps;
 
-        public Info107Service(IRepository<Info107> users, IRepository<Info050> comps)
+        public Info107Service(IRepository<Info107> users)
         {
             this.users = users;
-            this.comps = comps;
-        }
-
-        public async Task<Response<CompDto>> GetCompInfo(string compId)
-        {
-            var response = new Response<CompDto>();
-            var comp = await comps.FindAsync(t => t.CompId.Equals(compId));
-
-            response.Success(ObjectMapper.Map<Info050, CompDto>(comp));
-            return response;
         }
 
         public async Task<Response<LoginDto>> Login(LoginRequest request)
