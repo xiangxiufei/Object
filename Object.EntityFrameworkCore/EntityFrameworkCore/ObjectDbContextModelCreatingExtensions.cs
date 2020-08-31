@@ -1409,6 +1409,352 @@ namespace Object.EntityFrameworkCore
             });
 
             #endregion Info702
+
+            #region Smkt140
+
+            builder.Entity<Smkt140>(entity =>
+            {
+                entity.HasKey(e => new { e.Jyh, e.Flag });
+
+                entity.ToTable("smkt140", ObjectConsts.DbSchema);
+
+                entity.Property(e => e.Jyh)
+                    .HasColumnName("jyh")
+                    .HasMaxLength(22)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Flag)
+                    .HasColumnName("flag")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Clsj)
+                    .HasColumnName("clsj")
+                    .HasColumnType("smalldatetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.CompId)
+                    .IsRequired()
+                    .HasColumnName("comp_id")
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('000005')");
+
+                entity.Property(e => e.Fkfs1)
+                    .HasColumnName("fkfs1")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs2)
+                    .HasColumnName("fkfs2")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs3)
+                    .HasColumnName("fkfs3")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs4)
+                    .HasColumnName("fkfs4")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs5)
+                    .HasColumnName("fkfs5")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs6)
+                    .HasColumnName("fkfs6")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs7)
+                    .HasColumnName("fkfs7")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Fkfs8)
+                    .HasColumnName("fkfs8")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Gnqje)
+                    .HasColumnName("gnqje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Hybh)
+                    .HasColumnName("hybh")
+                    .HasMaxLength(13)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Hyk)
+                    .HasColumnName("hyk")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Hyyh)
+                    .HasColumnName("hyyh")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Je1)
+                    .HasColumnName("je1")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Je2)
+                    .HasColumnName("je2")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Je3)
+                    .HasColumnName("je3")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Jysj)
+                    .HasColumnName("jysj")
+                    .HasColumnType("smalldatetime");
+
+                entity.Property(e => e.Lmkye)
+                    .HasColumnName("lmkye")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Skjh)
+                    .IsRequired()
+                    .HasColumnName("skjh")
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Skydm)
+                    .IsRequired()
+                    .HasColumnName("skydm")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ssje)
+                    .HasColumnName("ssje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Xj)
+                    .HasColumnName("xj")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Xyk)
+                    .HasColumnName("xyk")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Yhje)
+                    .HasColumnName("yhje")
+                    .HasColumnType("numeric(10, 2)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Yhxyk)
+                    .HasColumnName("yhxyk")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.YhxykNo)
+                    .HasColumnName("yhxyk_no")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Yhxyklx)
+                    .HasColumnName("yhxyklx")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Yyydm)
+                    .HasColumnName("yyydm")
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("(space((10)))");
+
+                entity.Property(e => e.Zje)
+                    .HasColumnName("zje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Zkje)
+                    .HasColumnName("zkje")
+                    .HasColumnType("numeric(10, 2)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Zlczje)
+                    .HasColumnName("zlczje")
+                    .HasColumnType("numeric(12, 2)")
+                    .HasDefaultValueSql("((0.00))");
+
+                entity.Property(e => e.Zlje)
+                    .HasColumnName("zlje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Zlyh)
+                    .HasColumnName("zlyh")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Zp)
+                    .HasColumnName("zp")
+                    .HasColumnType("numeric(10, 2)");
+            });
+
+            #endregion Smkt140
+
+            #region Smkt141
+
+            builder.Entity<Smkt141>(entity =>
+            {
+                entity.HasKey(e => new { e.Jyh, e.Jyflag, e.Sequ, e.Spdm });
+
+                entity.ToTable("smkt141", ObjectConsts.DbSchema);
+
+                entity.Property(e => e.Jyh)
+                    .HasColumnName("jyh")
+                    .HasMaxLength(22)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Jyflag)
+                    .HasColumnName("jyflag")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength()
+                    .HasDefaultValueSql("('0')");
+
+                entity.Property(e => e.Sequ).HasColumnName("sequ");
+
+                entity.Property(e => e.Spdm)
+                    .HasColumnName("spdm")
+                    .HasMaxLength(13)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Abcx)
+                    .HasColumnName("abcx")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Bsyh)
+                    .HasColumnName("bsyh")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.CompId)
+                    .HasColumnName("comp_id")
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Cxbz)
+                    .HasColumnName("cxbz")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Flag)
+                    .IsRequired()
+                    .HasColumnName("flag")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Hyyh)
+                    .HasColumnName("hyyh")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Jfbl)
+                    .HasColumnName("jfbl")
+                    .HasColumnType("numeric(5, 2)");
+
+                entity.Property(e => e.Jysj)
+                    .HasColumnName("jysj")
+                    .HasColumnType("smalldatetime");
+
+                entity.Property(e => e.Mmyh)
+                    .HasColumnName("mmyh")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Mzyh)
+                    .HasColumnName("mzyh")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Ssje)
+                    .HasColumnName("ssje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Xsdj)
+                    .HasColumnName("xsdj")
+                    .HasColumnType("numeric(9, 2)");
+
+                entity.Property(e => e.Xsph)
+                    .HasColumnName("xsph")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Xssl)
+                    .HasColumnName("xssl")
+                    .HasColumnType("numeric(9, 3)");
+
+                entity.Property(e => e.Yhje)
+                    .HasColumnName("yhje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Ysje)
+                    .HasColumnName("ysje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Yyydm)
+                    .HasColumnName("yyydm")
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Zkje)
+                    .HasColumnName("zkje")
+                    .HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.Zlyh)
+                    .HasColumnName("zlyh")
+                    .HasColumnType("numeric(12, 2)");
+            });
+
+            #endregion Smkt141
+
+            #region Smkt142
+
+            builder.Entity<Smkt142>(entity =>
+            {
+                entity.HasKey(e => new { e.Jyh, e.Bzdm });
+
+                entity.ToTable("smkt142", ObjectConsts.DbSchema);
+
+                entity.Property(e => e.Jyh)
+                    .HasColumnName("jyh")
+                    .HasMaxLength(22)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Bzdm)
+                    .HasColumnName("bzdm")
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.CompId)
+                    .HasColumnName("comp_id")
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Jysj)
+                    .HasColumnName("jysj")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Wzlje)
+                    .HasColumnName("wzlje")
+                    .HasColumnType("numeric(12, 2)");
+
+                entity.Property(e => e.Ysje)
+                    .HasColumnName("ysje")
+                    .HasColumnType("numeric(12, 2)");
+            });
+
+            #endregion Smkt142
         }
     }
 }

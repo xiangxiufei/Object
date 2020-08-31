@@ -11,11 +11,11 @@ namespace Object.HttpApi.Controllers
 {
     [Route("Order/[controller]/[action]")]
     [Authorize]
-    public class Pay : AbpController
+    public class PayController : AbpController
     {
-        private readonly IShoppingCartService service;
+        private readonly IOrderService service;
 
-        public Pay(IShoppingCartService service)
+        public PayController(IOrderService service)
         {
             this.service = service;
         }
@@ -27,6 +27,15 @@ namespace Object.HttpApi.Controllers
         public async Task<Response<List<PaymentMethod>>> GetPaymentMethods()
         {
             return await service.GetPaymentMethods();
+        }
+
+        /// <summary>
+        /// 保存交易流水
+        /// </summary>
+        [HttpPost]
+        public async Task<Response<string>> SaveGeneralJournal([FromBody]GeneralJournal dto)
+        {
+            return await service.SaveGeneralJournal(dto);
         }
     }
 }

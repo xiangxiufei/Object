@@ -9,9 +9,14 @@
             商品查询
             </summary>
         </member>
-        <member name="M:Object.HttpApi.Controllers.Pay.GetPaymentMethods">
+        <member name="M:Object.HttpApi.Controllers.PayController.GetPaymentMethods">
             <summary>
             币种代码查询
+            </summary>
+        </member>
+        <member name="M:Object.HttpApi.Controllers.PayController.SaveGeneralJournal(Object.Application.Contracts.DTO.GeneralJournal)">
+            <summary>
+            保存交易流水
             </summary>
         </member>
         <member name="M:Object.HttpApi.Controllers.UserController.Login(Object.Application.Contracts.LoginRequest)">
